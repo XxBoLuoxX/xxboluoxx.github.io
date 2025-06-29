@@ -1,5 +1,7 @@
+import { blogPosts, renderPosts } from './blog.js';
+
 // 初始化搜索功能
-function initSearch() {
+export function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     
@@ -13,9 +15,9 @@ function initSearch() {
 
 // 执行搜索
 function performSearch() {
-    const query = document.getElementById('search-input').value.toLowerCase();
+    const query = document.getElementById('search-input').value.toLowerCase().trim();
     
-    if (!query.trim()) {
+    if (!query) {
         renderPosts(blogPosts);
         return;
     }
@@ -26,5 +28,5 @@ function performSearch() {
         post.tags.some(tag => tag.toLowerCase().includes(query))
     );
     
-    renderPosts(results);
+    renderPosts(results, document.getElementById('filtered-posts') ? 'filtered-posts' : undefined);
 }

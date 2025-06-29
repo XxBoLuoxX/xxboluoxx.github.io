@@ -60,6 +60,7 @@ body {
 .post-title {
     font-size: 24px;
     margin-bottom: 10px;
+    font-weight: normal; /* 博客标题不加粗 */
 }
 .post-meta {
     color: #666;
@@ -70,4 +71,32 @@ body {
 }
 .post-content p {
     line-height: 1.6;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.icon-facebook {
+    background-image: url('img/facebook.png');
+}
+
+.icon-twitter {
+    background-image: url('img/twitter.png');
+}
+
+.icon-instagram {
+    background-image: url('img/instagram.png');
+}
+
+.icon-linkedin {
+    background-image: url('img/linkedin.png');
+}
+
+.icon-github {
+    background-image: url('img/github.png');
 }

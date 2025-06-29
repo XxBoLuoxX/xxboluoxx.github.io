@@ -10,11 +10,11 @@
 <body>
     <header>
         <div class="logo-container">
-            <span>Logo</span>
+            <a href="../index.html"><img src="../img/logo.png" alt="Logo"></a>
             <span>我的小站</span>
         </div>
         <nav>
-            <a href="../index.html">首页</a>
+            <a href="../blog-home.html">博文</a>
             <a href="category.html">分类</a>
             <a href="about.html">关于</a>
         </nav>
@@ -27,14 +27,18 @@
         <input type="text" id="search-input" placeholder="搜索博客">
         <button id="search-button">搜索</button>
         <div id="search-results" class="blog-list"></div>
+        <div id="no-results-message" style="display: none;">没有找到你所输入的内容，要不换个方式搜一下？</div>
     </main>
 
     <footer>
         <div class="left-links">
-            <a href="#">超链接小图标1</a>
-            <a href="#">超链接小图标2</a>
+            <a href="#" class="social-icon icon-facebook"></a>
+            <a href="#" class="social-icon icon-twitter"></a>
+            <a href="#" class="social-icon icon-instagram"></a>
+            <a href="#" class="social-icon icon-linkedin"></a>
+            <a href="#" class="social-icon icon-github"></a>
         </div>
-        <span class="random-text">随机文本</span>
+        <span class="random-text" id="random-text"></span>
     </footer>
 
     <script src="../js/blog.js"></script>
@@ -42,17 +46,37 @@
         document.getElementById('search-button').addEventListener('click', function () {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
             const blogPosts = document.querySelectorAll('.blog-post');
+            let found = false;
+
             blogPosts.forEach((post) => {
                 const article = post.querySelector('article');
                 const postTitle = article.querySelector('.post-title').textContent.toLowerCase();
                 const postContent = article.querySelector('.post-content').textContent.toLowerCase();
                 if (postTitle.includes(searchTerm) || postContent.includes(searchTerm)) {
                     post.style.display = 'block';
+                    found = true;
                 } else {
                     post.style.display = 'none';
                 }
             });
+
+            const noResultsMessage = document.getElementById('no-results-message');
+            if (found) {
+                noResultsMessage.style.display = 'none';
+            } else {
+                noResultsMessage.style.display = 'block';
+            }
         });
+
+        fetch('../html/random.txt')
+           .then(response => response.text())
+           .then(data => {
+                const lines = data.split('\n');
+                const randomIndex = Math.floor(Math.random() * lines.length);
+                const randomLine = lines[randomIndex];
+                document.getElementById('random-text').textContent = randomLine;
+            })
+           .catch(error => console.error('读取随机文本文件失败:', error));
     </script>
 </body>
 </html>

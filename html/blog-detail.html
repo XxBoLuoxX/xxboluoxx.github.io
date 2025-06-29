@@ -10,11 +10,11 @@
 <body>
     <header>
         <div class="logo-container">
-            <span>Logo</span>
+            <a href="../index.html"><img src="../img/logo.png" alt="Logo"></a>
             <span>我的小站</span>
         </div>
         <nav>
-            <a href="../index.html">首页</a>
+            <a href="../blog-home.html">博文</a>
             <a href="category.html">分类</a>
             <a href="about.html">关于</a>
         </nav>
@@ -24,11 +24,25 @@
     </main>
     <footer>
         <div class="left-links">
-            <a href="#">超链接小图标1</a>
-            <a href="#">超链接小图标2</a>
+            <a href="#" class="social-icon icon-facebook"></a>
+            <a href="#" class="social-icon icon-twitter"></a>
+            <a href="#" class="social-icon icon-instagram"></a>
+            <a href="#" class="social-icon icon-linkedin"></a>
+            <a href="#" class="social-icon icon-github"></a>
         </div>
-        <span class="random-text">随机文本</span>
+        <span class="random-text" id="random-text"></span>
     </footer>
     <script src="../js/blog-detail.js"></script>
+    <script>
+        fetch('../html/random.txt')
+           .then(response => response.text())
+           .then(data => {
+                const lines = data.split('\n');
+                const randomIndex = Math.floor(Math.random() * lines.length);
+                const randomLine = lines[randomIndex];
+                document.getElementById('random-text').textContent = randomLine;
+            })
+           .catch(error => console.error('读取随机文本文件失败:', error));
+    </script>
 </body>
 </html>

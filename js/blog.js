@@ -39,16 +39,8 @@ function loadBlogs() {
                 }
             })
            .catch(error => {
-                console.error(`加载博客 ${blogPath} 失败:`, error);
-                blogContainer.innerHTML = `
-                    <div class="error-message">
-                        <p>无法加载此博客</p>
-                        <p class="text-sm text-red-500">错误: ${error.message}</p>
-                    </div>
-                `;
-                if (blogList) {
-                    blogList.appendChild(blogContainer);
-                }
+                // 不添加错误提示信息
+                return;
             });
     });
 

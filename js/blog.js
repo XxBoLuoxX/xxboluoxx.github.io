@@ -1,6 +1,6 @@
 function loadBlogs() {
-    // 修正 ID 选择器，移除多余空格
-    const blogList = document.getElementById('blog-list');
+    // 修改为正确的 ID
+    const blogList = document.getElementById('blog-list-container');
     if (!blogList) {
         console.error('未找到博客列表容器');
         return;
@@ -14,13 +14,13 @@ function loadBlogs() {
         blogContainer.className = 'blog-post'; // 添加类名用于后续筛选
         
         fetch(blogPath)
-            .then(response => {
+           .then(response => {
                 if (!response.ok) {
                     throw new Error(`加载博客失败: ${response.status}`);
                 }
                 return response.text();
             })
-            .then(data => {
+           .then(data => {
                 blogContainer.innerHTML = data;
                 
                 // 检查 article 元素是否存在
@@ -45,7 +45,7 @@ function loadBlogs() {
                     blogList.appendChild(blogContainer);
                 }
             })
-            .catch(error => {
+           .catch(error => {
                 console.error(`加载博客 ${blogPath} 失败:`, error);
                 // 显示错误信息
                 blogContainer.innerHTML = `
@@ -63,11 +63,11 @@ function loadBlogs() {
     // 等待所有博客加载完成后处理标签
     Promise.all(blogs.map(blogPath => 
         fetch(blogPath)
-            .then(response => {
+           .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.text();
             })
-            .catch(() => '') // 忽略加载失败的博客
+           .catch(() => '') // 忽略加载失败的博客
     )).then(() => {
         const uniqueTags = [...new Set(allTags)];
         

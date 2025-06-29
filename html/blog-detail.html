@@ -8,41 +8,35 @@
     <title>博客详情</title>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="../index.html"><img src="../img/logo.png" alt="Logo"></a>
-            <span>我的小站</span>
-        </div>
-        <nav>
-            <a href="../blog-home.html">博文</a>
-            <a href="category.html">分类</a>
-            <a href="about.html">关于</a>
-        </nav>
-    </header>
+    <!-- 动态加载 header -->
+    <div id="header-container"></div>
+
     <main>
         <article id="blog-detail-content"></article>
     </main>
-    <footer>
-        <div class="left-links">
-            <a href="#" class="social-icon icon-facebook"></a>
-            <a href="#" class="social-icon icon-twitter"></a>
-            <a href="#" class="social-icon icon-instagram"></a>
-            <a href="#" class="social-icon icon-linkedin"></a>
-            <a href="#" class="social-icon icon-github"></a>
-        </div>
-        <span class="random-text" id="random-text"></span>
-    </footer>
+
+    <!-- 动态加载 footer -->
+    <div id="footer-container"></div>
+
     <script src="../js/blog-detail.js"></script>
     <script>
-        fetch('../html/random.txt')
+        // 加载 header
+        fetch('../html/header.html')
            .then(response => response.text())
            .then(data => {
-                const lines = data.split('\n');
-                const randomIndex = Math.floor(Math.random() * lines.length);
-                const randomLine = lines[randomIndex];
-                document.getElementById('random-text').textContent = randomLine;
-            })
-           .catch(error => console.error('读取随机文本文件失败:', error));
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        // 加载 footer
+        fetch('../html/footer.html')
+           .then(response => response.text())
+           .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+                // 加载随机文本
+                const script = document.createElement('script');
+                script.src = '../html/random-text.js';
+                document.body.appendChild(script);
+            });
     </script>
 </body>
 </html>

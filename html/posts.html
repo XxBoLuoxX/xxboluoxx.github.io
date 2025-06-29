@@ -10,11 +10,11 @@
   <!-- 导航栏 -->
   <nav class="navbar">
     <a href="/index.html" class="logo-link">
-      <img src="/images/logo.png" alt="Logo" class="logo-img">
+      <img src="/images/logo.png" alt="波萝格" class="logo-img">
       波萝格
     </a>
     <ul class="nav-links">
-      <li><a href="/html/posts.html" class="active">博文</a></li>
+      <li><a href="/html/posts.html">博文</a></li>
       <li><a href="/html/categories.html">分类</a></li>
       <li><a href="/html/about.html">关于</a></li>
     </ul>
@@ -22,22 +22,35 @@
 
   <!-- 主体内容 -->
   <main class="content">
-    <h1>所有博文</h1>
+    <h1 class="page-title">所有博文</h1>
+    
     <div class="post-card">
       <h2>JavaScript入门指南</h2>
-      <p>学习JavaScript的基础知识...</p>
+      <p>从零开始学习JavaScript编程...</p>
+      <div class="post-meta">
+        <span>标签: 技术, JavaScript</span>
+        <span>日期: 2023-05-15</span>
+      </div>
     </div>
+    
     <div class="post-card">
       <h2>CSS布局技巧</h2>
       <p>掌握现代CSS布局方法...</p>
+      <div class="post-meta">
+        <span>标签: 技术, CSS</span>
+        <span>日期: 2023-04-20</span>
+      </div>
     </div>
   </main>
 
   <!-- 页脚 -->
   <footer class="footer">
     <div class="social-links">
-      <a href="#" class="social-icon"><img src="/images/github.png" alt="GitHub"></a>
-      <a href="#" class="social-icon"><img src="/images/twitter.png" alt="Twitter"></a>
+      <a href="#"><img src="/images/social-icons/github.png" alt="GitHub"></a>
+      <a href="#"><img src="/images/social-icons/twitter.png" alt="Twitter"></a>
+      <a href="#"><img src="/images/social-icons/weibo.png" alt="微博"></a>
+      <a href="#"><img src="/images/social-icons/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="/images/social-icons/linkedin.png" alt="LinkedIn"></a>
     </div>
     <div class="random-text" id="randomText"></div>
   </footer>

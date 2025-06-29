@@ -1,10 +1,12 @@
-// 高亮当前导航项
-function highlightNav() {
-  const path = window.location.pathname;
+// 高亮当前导航菜单
+function highlightCurrentNav() {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === path) {
+    const linkPath = link.getAttribute('href').split('/').pop();
+    if (currentPath === linkPath) {
       link.classList.add('active');
+    } else {
+      link.classList.remove('active');
     }
   });
 }
@@ -12,7 +14,7 @@ function highlightNav() {
 // 加载随机文本
 function loadRandomText() {
   const texts = [
-    "腾讯元宝申请出战",
+     "腾讯元宝申请出战",
     "豆包为什么不能叫邓超",
     "Wake  Up!!!",
     "其实我根本就不会看代码",
@@ -20,11 +22,12 @@ function loadRandomText() {
     "这是什么"
   ];
   const randomText = texts[Math.floor(Math.random() * texts.length)];
-  document.getElementById('randomText').textContent = randomText;
+  const element = document.getElementById('randomText');
+  if (element) element.textContent = randomText;
 }
 
 // 初始化页面
 document.addEventListener('DOMContentLoaded', () => {
-  highlightNav();
+  highlightCurrentNav();
   loadRandomText();
 });

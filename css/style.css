@@ -1,29 +1,33 @@
-/* 基础样式 */
-body {
-    font-family: 'Arial', sans-serif;
+/* 基础重置 */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #000; /* 黑色背景 */
-    color: #fff;
+    background-color: #fff; /* 主体内容白色背景 */
+    color: #333; /* 主体文字深色 */
 }
 
-/* 导航栏样式 - 固定在顶部 */
+/* 导航栏 - 固定在顶部 */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #000;
+    background-color: #000; /* 黑色背景 */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 2px solid #9c27b0; /* 紫色边框 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo-link {
@@ -40,7 +44,7 @@ body {
 .logo-text {
     font-weight: bold;
     font-size: 1.2rem;
-    color: #9c27b0; /* 紫色文字 */
+    color: #fff; /* 白色文字 */
 }
 
 .nav-links {
@@ -51,39 +55,42 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #fff;
+    color: #fff; /* 白色文字 */
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #4caf50; /* 绿色悬停 */
+    color: #ccc; /* 悬停时浅灰色 */
 }
 
 .nav-links .active {
-    color: #ff9800; /* 橙色活动状态 */
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 /* 主体内容 */
 .content {
-    max-width: 900px;
-    margin: 6rem auto 4rem;
-    padding: 0 1.5rem;
+    max-width: 1200px;
+    width: 90%;
+    margin: 5rem auto 3rem; /* 考虑导航栏高度 */
+    padding: 2rem;
+    background-color: #fff; /* 白色背景 */
     flex: 1;
 }
 
 .page-title {
-    color: #4caf50; /* 绿色标题 */
-    border-bottom: 1px solid #ff9800; /* 橙色下划线 */
+    margin-bottom: 2rem;
     padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
 }
 
 /* 文章卡片样式 */
 .post-card {
     margin-bottom: 2rem;
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
-    background-color: #111;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s;
 }
 
@@ -92,13 +99,13 @@ body {
 }
 
 .post-header {
-    padding: 1rem 1.5rem;
-    background-color: #9c27b0; /* 紫色标题背景 */
+    padding: 1.5rem;
+    background-color: #f8f9fa;
 }
 
 .post-header h2 {
     margin: 0;
-    color: #fff;
+    color: #333;
 }
 
 .post-header h2 a {
@@ -108,14 +115,14 @@ body {
 
 .post-content {
     padding: 1.5rem;
-    position: relative;
 }
 
 .post-meta {
     display: flex;
     justify-content: space-between;
     margin-top: 1rem;
-    color: #ff9800; /* 橙色元信息 */
+    color: #666;
+    font-size: 0.9rem;
 }
 
 /* 搜索和分类样式 */
@@ -127,26 +134,26 @@ body {
 }
 
 #search-input {
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1rem;
     border-radius: 4px;
-    border: 2px solid #9c27b0;
-    background-color: #222;
-    color: #fff;
+    border: 1px solid #ddd;
     width: 300px;
+    font-size: 1rem;
 }
 
 #search-btn {
-    padding: 0.6rem 1.5rem;
-    background-color: #9c27b0;
+    padding: 0.8rem 1.5rem;
+    background-color: #000;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1rem;
     transition: background-color 0.3s;
 }
 
 #search-btn:hover {
-    background-color: #7b1fa2;
+    background-color: #333;
 }
 
 .tag-cloud {
@@ -159,7 +166,7 @@ body {
 
 .tag {
     padding: 0.6rem 1.2rem;
-    background-color: #4caf50;
+    background-color: #000;
     color: white;
     border: none;
     border-radius: 20px;
@@ -168,7 +175,7 @@ body {
 }
 
 .tag:hover {
-    background-color: #388e3c;
+    background-color: #333;
     transform: scale(1.05);
 }
 
@@ -177,9 +184,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 2rem;
-    background-color: #111;
-    border-top: 2px solid #ff9800;
+    padding: 1.5rem 2rem;
+    background-color: #000; /* 黑色背景 */
+    color: #fff; /* 白色文字 */
+    margin-top: auto; /* 确保页脚在底部 */
 }
 
 .social-links {
@@ -190,6 +198,7 @@ body {
 .social-icon img {
     height: 24px;
     transition: transform 0.3s;
+    filter: invert(1); /* 使图标变为白色 */
 }
 
 .social-icon:hover img {
@@ -198,7 +207,7 @@ body {
 
 .random-text {
     font-style: italic;
-    color: #9c27b0;
+    color: #fff; /* 白色文字 */
 }
 
 /* 响应式设计 */
@@ -213,11 +222,22 @@ body {
     }
     
     .content {
-        margin-top: 8rem;
+        margin-top: 7rem;
+        padding: 1rem;
     }
     
     .footer {
         flex-direction: column;
         gap: 1rem;
+        text-align: center;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #search-input {
+        width: 100%;
     }
 }

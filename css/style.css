@@ -1,83 +1,44 @@
-/* 基础样式 */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
-/* 导航栏样式 */
-.navbar {
+/* 新增搜索和分类样式 */
+.search-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-}
-
-.logo {
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-}
-
-/* 文章卡片样式 */
-.content {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.post-card {
-    margin-bottom: 2rem;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.post-header {
-    padding: 0.8rem 1rem;
-}
-
-.post-header h2 {
-    margin: 0;
-}
-
-.post-content {
-    padding: 1rem;
-    position: relative;
-}
-
-.post-meta {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-}
-
-/* 页脚样式 */
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-}
-
-.social-links {
-    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
     gap: 1rem;
 }
 
-.random-text {
-    font-style: italic;
+#search-input {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #9c27b0;
+    width: 300px;
+}
+
+#search-btn {
+    padding: 0.5rem 1rem;
+    background-color: #9c27b0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.tag {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tag:hover {
+    background-color: #3e8e41;
 }

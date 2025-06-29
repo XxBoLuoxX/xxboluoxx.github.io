@@ -1,7 +1,5 @@
-import { blogPosts, renderPosts } from './blog.js';
-
-// 初始化搜索功能
-export function initSearch() {
+// 搜索功能直接使用全局的 blogPosts 和 renderPosts
+function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     
@@ -13,7 +11,6 @@ export function initSearch() {
     }
 }
 
-// 执行搜索
 function performSearch() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
     

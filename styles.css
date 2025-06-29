@@ -1,112 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-header {
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-nav a {
-    margin: 0 10px;
-    display: inline-block;
-}
-main {
-    padding: 20px;
-}
-footer {
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.left-links {
-    display: flex;
-}
-.left-links a {
-    margin-right: 10px;
-}
-.random-text {
-    text-align: right;
-}
-@font-face {
-    font-family: 'jingnanbold';
-    src: url('font/jingnanbold.ttf') format('truetype');
-}
-body {
-    font-family: 'jingnanbold', sans-serif;
-}
-.blog-post {
-    width: 80%;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-}
-.post-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    font-weight: normal; /* 博客标题不加粗 */
-}
-.post-meta {
-    color: #666;
-    margin-bottom: 10px;
-}
-.post-author {
-    margin-right: 10px;
-}
-.post-content p {
-    line-height: 1.6;
-}
-
-.social-icon {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    background-size: cover;
-    margin-right: 10px;
-}
-
-.icon-facebook {
-    background-image: url('img/facebook.png');
-}
-
-.icon-twitter {
-    background-image: url('img/twitter.png');
-}
-
-.icon-instagram {
-    background-image: url('img/instagram.png');
-}
-
-.icon-linkedin {
-    background-image: url('img/linkedin.png');
-}
-
-.icon-github {
-    background-image: url('img/github.png');
-}
-
+/* 布局样式 */
 .home-container {
     display: flex;
+    height: calc(100vh - 120px); /* 减去header和footer高度 */
 }
 
 .left-section {
     width: 20%;
+    padding: 20px;
 }
 
 .right-section {
@@ -122,5 +22,71 @@ body {
 
 .blog-list {
     height: 30%;
-    overflow-y: auto; /* 使博文列表可以滚动 */
+    overflow-y: auto; /* 滚动显示 */
+}
+
+/* 标签云样式 */
+.tag-cloud {
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.tag-link {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.tag-link:hover {
+    background-color: #e0e0e0;
+}
+
+/* 分类导航样式 */
+.category-nav {
+    margin: 20px 0;
+}
+
+.category-link {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.category-link.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* 搜索样式 */
+.search-container {
+    margin: 20px 0;
+}
+
+#search-input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
 }

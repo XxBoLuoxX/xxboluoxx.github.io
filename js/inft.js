@@ -5,6 +5,9 @@ function loadHeaderFooter() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('加载header失败:', error);
         });
 
     // 加载 footer
@@ -12,10 +15,9 @@ function loadHeaderFooter() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-container').innerHTML = data;
-            // 加载随机文本
-            const script = document.createElement('script');
-            script.src = 'html/random-text.js';
-            document.body.appendChild(script);
+        })
+        .catch(error => {
+            console.error('加载footer失败:', error);
         });
 }
 

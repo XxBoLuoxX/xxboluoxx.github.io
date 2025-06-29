@@ -5,7 +5,8 @@ function loadBlogs() {
         return;
     }
 
-    const blogs = ['blog/blog1.html', 'blog/blog2.html'];
+    // 修改：移除不存在的 blog/blog2.html
+    const blogs = ['blog/blog1.html'];
     const allTags = [];
 
     blogs.forEach((blogPath) => {
@@ -39,8 +40,16 @@ function loadBlogs() {
                 }
             })
            .catch(error => {
-                // 不添加错误提示信息
-                return;
+                console.error(`加载博客 ${blogPath} 失败:`, error);
+                blogContainer.innerHTML = `
+                    <div class="error-message">
+                        <p>无法加载此博客</p>
+                        <p class="text-sm text-red-500">错误: ${error.message}</p>
+                    </div>
+                `;
+                if (blogList) {
+                    blogList.appendChild(blogContainer);
+                }
             });
     });
 
@@ -54,56 +63,54 @@ function loadBlogs() {
     )).then(() => {
         const uniqueTags = [...new Set(allTags)];
         const subCategoryContainer = document.getElementById('sub-category-container');
-        if (!subCategoryContainer) {
-            console.error('未找到子分类容器');
-            return;
-        }
-
-        uniqueTags.forEach(tag => {
-            const tagLink = document.createElement('a');
-            tagLink.href = '#';
-            tagLink.textContent = tag;
-            tagLink.classList.add('sub-category-link');
-            tagLink.dataset.tag = tag;
-            subCategoryContainer.appendChild(tagLink);
-        });
-
-        const categoryLinks = document.querySelectorAll('.category-link');
-        categoryLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const category = this.dataset.category;
-                const subCategoryLinks = document.querySelectorAll('.sub-category-link');
-                subCategoryLinks.forEach(subLink => {
-                    const tag = subLink.dataset.tag;
-                    if (category === 'all' || tag.includes(category)) {
-                        subLink.style.display = 'inline-block';
-                    } else {
-                        subLink.style.display = 'none';
-                    }
-                });
+        // 修改：添加判断，仅在 sub-category-container 元素存在时执行相关操作
+        if (subCategoryContainer) {
+            uniqueTags.forEach(tag => {
+                const tagLink = document.createElement('a');
+                tagLink.href = '#';
+                tagLink.textContent = tag;
+                tagLink.classList.add('sub-category-link');
+                tagLink.dataset.tag = tag;
+                subCategoryContainer.appendChild(tagLink);
             });
-        });
 
-        const subCategoryLinks = document.querySelectorAll('.sub-category-link');
-        subCategoryLinks.forEach((link) => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetTag = this.textContent;
-                const blogPosts = document.querySelectorAll('.blog-post');
-                blogPosts.forEach((post) => {
-                    const article = post.querySelector('article');
-                    if (article && article.dataset.tags) {
-                        const postTags = article.dataset.tags.split(',').map(t => t.trim());
-                        if (postTags.includes(targetTag)) {
-                            post.style.display = 'block';
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const category = this.dataset.category;
+                    const subCategoryLinks = document.querySelectorAll('.sub-category-link');
+                    subCategoryLinks.forEach(subLink => {
+                        const tag = subLink.dataset.tag;
+                        if (category === 'all' || tag.includes(category)) {
+                            subLink.style.display = 'inline-block';
                         } else {
-                            post.style.display = 'none';
+                            subLink.style.display = 'none';
                         }
-                    }
+                    });
                 });
             });
-        });
+
+            const subCategoryLinks = document.querySelectorAll('.sub-category-link');
+            subCategoryLinks.forEach((link) => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetTag = this.textContent;
+                    const blogPosts = document.querySelectorAll('.blog-post');
+                    blogPosts.forEach((post) => {
+                        const article = post.querySelector('article');
+                        if (article && article.dataset.tags) {
+                            const postTags = article.dataset.tags.split(',').map(t => t.trim());
+                            if (postTags.includes(targetTag)) {
+                                post.style.display = 'block';
+                            } else {
+                                post.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        }
     });
 }
 

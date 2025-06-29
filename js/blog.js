@@ -22,6 +22,9 @@ async function initBlog() {
     
     // 加载随机文本
     loadRandomText();
+
+    // 初始化搜索功能
+    initSearch();
 }
 
 // 加载所有博客文章
@@ -48,5 +51,105 @@ async function loadBlogPosts() {
     }
 }
 
-// 其他函数保持不变（loadPostMeta, renderPosts, renderCategories, loadRandomText, formatDate）
-// 只需移除所有 export 语句
+// 加载文章元数据
+async function loadPostMeta(url) {
+    try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const title = doc.querySelector('title').textContent;
+        const date = doc.querySelector('meta[name="date"]').getAttribute('content');
+        const tags = doc.querySelector('meta[name="tags"]').getAttribute('content').split(',');
+        const excerpt = doc.querySelector('meta[name="excerpt"]').getAttribute('content');
+
+        return { title, date, tags, excerpt, url };
+    } catch (error) {
+        console.error(`加载文章元数据失败: ${url}`, error);
+        return null;
+    }
+}
+
+// 渲染文章
+function renderPosts(posts, containerId = 'posts-container') {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    posts.forEach(post => {
+        if (!post) return;
+
+        const postCard = document.createElement('div');
+        postCard.classList.add('post-card');
+
+        const title = document.createElement('h2');
+        title.textContent = post.title;
+        postCard.appendChild(title);
+
+        const excerpt = document.createElement('p');
+        excerpt.textContent = post.excerpt;
+        postCard.appendChild(excerpt);
+
+        const meta = document.createElement('div');
+        meta.classList.add('post-meta');
+
+        const tags = document.createElement('span');
+        tags.textContent = `标签: ${post.tags.join(', ')}`;
+        meta.appendChild(tags);
+
+        const date = document.createElement('span');
+        date.textContent = `日期: ${post.date}`;
+        meta.appendChild(date);
+
+        postCard.appendChild(meta);
+
+        container.appendChild(postCard);
+    });
+}
+
+// 渲染分类
+function renderCategories() {
+    const container = document.getElementById('categories-container');
+    if (!container) return;
+
+    const allTags = blogPosts.flatMap(post => post.tags);
+    const uniqueTags = [...new Set(allTags)];
+
+    const tagCloud = document.createElement('div');
+    tagCloud.classList.add('tag-cloud');
+
+    uniqueTags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.classList.add('tag');
+        tagElement.textContent = tag;
+        tagElement.addEventListener('click', () => filterPostsByTag(tag));
+        tagCloud.appendChild(tagElement);
+    });
+
+    container.appendChild(tagCloud);
+}
+
+// 根据标签过滤文章
+function filterPostsByTag(tag) {
+    const filteredPosts = blogPosts.filter(post => post.tags.includes(tag));
+    renderPosts(filteredPosts, 'filtered-posts');
+}
+
+// 加载随机文本
+async function loadRandomText() {
+    try {
+        const response = await fetch('/data/random_text.txt');
+        const text = await response.text();
+        const texts = text.split('\n').filter(line => line.trim()!== '');
+        const randomText = texts[Math.floor(Math.random() * texts.length)];
+        const element = document.getElementById('randomText');
+        if (element) element.textContent = randomText;
+    } catch (error) {
+        console.error('加载随机文本失败:', error);
+    }
+}
+
+// 初始化页面
+document.addEventListener('DOMContentLoaded', initBlog);

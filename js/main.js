@@ -11,23 +11,22 @@ function highlightCurrentNav() {
   });
 }
 
-// 加载随机文本
-function loadRandomText() {
-  const texts = [
-     "腾讯元宝申请出战",
-    "豆包为什么不能叫邓超",
-    "Wake  Up!!!",
-    "其实我根本就不会看代码",
-   "你想看什么",
-    "这是什么"
-  ];
-  const randomText = texts[Math.floor(Math.random() * texts.length)];
-  const element = document.getElementById('randomText');
-  if (element) element.textContent = randomText;
+// 从外部文件加载随机文本
+async function loadRandomText() {
+    try {
+        const response = await fetch('/data/random_text.txt');
+        const text = await response.text();
+        const texts = text.split('\n').filter(line => line.trim()!== '');
+        const randomText = texts[Math.floor(Math.random() * texts.length)];
+        const element = document.getElementById('randomText');
+        if (element) element.textContent = randomText;
+    } catch (error) {
+        console.error('加载随机文本失败:', error);
+    }
 }
 
 // 初始化页面
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   highlightCurrentNav();
-  loadRandomText();
+  await loadRandomText();
 });

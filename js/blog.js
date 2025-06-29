@@ -1,5 +1,4 @@
 function loadBlogs() {
-    // 修改为正确的 ID
     const blogList = document.getElementById('blog-list-container');
     if (!blogList) {
         console.error('未找到博客列表容器');
@@ -8,11 +7,11 @@ function loadBlogs() {
 
     const blogs = ['blog/blog1.html', 'blog/blog2.html'];
     const allTags = [];
-    
+
     blogs.forEach((blogPath) => {
         const blogContainer = document.createElement('div');
-        blogContainer.className = 'blog-post'; // 添加类名用于后续筛选
-        
+        blogContainer.className = 'blog-post';
+
         fetch(blogPath)
            .then(response => {
                 if (!response.ok) {
@@ -22,32 +21,25 @@ function loadBlogs() {
             })
            .then(data => {
                 blogContainer.innerHTML = data;
-                
-                // 检查 article 元素是否存在
                 const article = blogContainer.querySelector('article');
                 if (!article || !article.dataset.tags) {
                     console.warn(`博客 ${blogPath} 中未找到 article 元素或 tags 数据属性`);
                     return;
                 }
-                
                 const tags = article.dataset.tags.split(',');
                 tags.forEach(tag => allTags.push(tag.trim()));
-                
-                blogContainer.addEventListener('click', function() {
+                blogContainer.addEventListener('click', function () {
                     const blogId = blogPath.split('/').pop();
                     localStorage.setItem('blogId', blogId);
                     localStorage.setItem('blogContent', data);
                     window.location.href = 'blog-detail.html';
                 });
-                
-                // 确保 blogList 存在
                 if (blogList) {
                     blogList.appendChild(blogContainer);
                 }
             })
            .catch(error => {
                 console.error(`加载博客 ${blogPath} 失败:`, error);
-                // 显示错误信息
                 blogContainer.innerHTML = `
                     <div class="error-message">
                         <p>无法加载此博客</p>
@@ -59,42 +51,54 @@ function loadBlogs() {
                 }
             });
     });
-    
-    // 等待所有博客加载完成后处理标签
-    Promise.all(blogs.map(blogPath => 
+
+    Promise.all(blogs.map(blogPath =>
         fetch(blogPath)
            .then(response => {
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.text();
             })
-           .catch(() => '') // 忽略加载失败的博客
+           .catch(() => '')
     )).then(() => {
         const uniqueTags = [...new Set(allTags)];
-        
-        // 修正 ID 选择器，移除多余空格
         const subCategoryContainer = document.getElementById('sub-category-container');
         if (!subCategoryContainer) {
             console.error('未找到子分类容器');
             return;
         }
-        
+
         uniqueTags.forEach(tag => {
             const tagLink = document.createElement('a');
             tagLink.href = '#';
             tagLink.textContent = tag;
-            // 修正类名，移除多余空格
             tagLink.classList.add('sub-category-link');
+            tagLink.dataset.tag = tag;
             subCategoryContainer.appendChild(tagLink);
         });
-        
-        // 修正类选择器，移除多余空格
+
+        const categoryLinks = document.querySelectorAll('.category-link');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                const subCategoryLinks = document.querySelectorAll('.sub-category-link');
+                subCategoryLinks.forEach(subLink => {
+                    const tag = subLink.dataset.tag;
+                    // 这里简单假设标签和分类有对应关系，可根据实际情况修改
+                    if (category === 'all' || tag.includes(category)) {
+                        subLink.style.display = 'inline-block';
+                    } else {
+                        subLink.style.display = 'none';
+                    }
+                });
+            });
+        });
+
         const subCategoryLinks = document.querySelectorAll('.sub-category-link');
         subCategoryLinks.forEach((link) => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetTag = this.textContent;
-                
-                // 修正类选择器，移除多余空格
                 const blogPosts = document.querySelectorAll('.blog-post');
                 blogPosts.forEach((post) => {
                     const article = post.querySelector('article');

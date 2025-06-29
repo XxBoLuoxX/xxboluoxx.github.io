@@ -1,4 +1,10 @@
 /* 基础重置 */
+@font-face {
+    font-family: 'JingNanBold'; /* 自定义字体名称 */
+    src: url('../font/jingnanbold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;

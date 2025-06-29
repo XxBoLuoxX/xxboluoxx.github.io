@@ -1,59 +1,48 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>所有博文 - 波萝格博客</title>
-    <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>所有博文 | 波萝格博客</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <!-- 固定导航栏 -->
-    <nav class="navbar">
-        <a href="../index.html" class="logo-link">
-            <img src="../images/logo.png" alt="波萝格" class="logo-img">
-            <span class="logo-text">波萝格</span>
-        </a>
-        <ul class="nav-links">
-            <li><a class="active" href="../html/posts.html">博文</a></li>
-            <li><a href="../html/categories.html">分类</a></li>
-            <li><a href="../html/about.html">关于</a></li>
-        </ul>
-    </nav>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <a href="/index.html" class="logo-link">
+      <img src="/images/logo.png" alt="Logo" class="logo-img">
+      波萝格
+    </a>
+    <ul class="nav-links">
+      <li><a href="/html/posts.html" class="active">博文</a></li>
+      <li><a href="/html/categories.html">分类</a></li>
+      <li><a href="/html/about.html">关于</a></li>
+    </ul>
+  </nav>
 
-    <!-- 主体内容 - 显示所有文章 -->
-    <main class="content">
-        <h1 class="page-title">所有博文</h1>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="搜索博文...">
-            <button id="search-btn">搜索</button>
-        </div>
-        <div id="posts-container"></div>
-    </main>
+  <!-- 主体内容 -->
+  <main class="content">
+    <h1>所有博文</h1>
+    <div class="post-card">
+      <h2>JavaScript入门指南</h2>
+      <p>学习JavaScript的基础知识...</p>
+    </div>
+    <div class="post-card">
+      <h2>CSS布局技巧</h2>
+      <p>掌握现代CSS布局方法...</p>
+    </div>
+  </main>
 
-    <!-- 固定页脚 -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" class="social-icon"><img src="../images/social-icons/github.png" alt="GitHub"></a>
-            <a href="#" class="social-icon"><img src="../images/social-icons/twitter.png" alt="Twitter"></a>
-            <a href="#" class="social-icon"><img src="../images/social-icons/weibo.png" alt="微博"></a>
-            <a href="#" class="social-icon"><img src="../images/social-icons/instagram.png" alt="Instagram"></a>
-            <a href="#" class="social-icon"><img src="../images/social-icons/linkedin.png" alt="LinkedIn"></a>
-        </div>
-        <div class="random-text" id="randomText"></div>
-    </footer>
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="social-links">
+      <a href="#" class="social-icon"><img src="/images/github.png" alt="GitHub"></a>
+      <a href="#" class="social-icon"><img src="/images/twitter.png" alt="Twitter"></a>
+    </div>
+    <div class="random-text" id="randomText"></div>
+  </footer>
 
-    <script type="module">
-        import { initBlog } from '../js/blog.js';
-        import { initSearch } from '../js/search.js';
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            initBlog();
-            initSearch();
-        });
-    </script>
-<!-- 在 </body> 标签前添加 -->
-<script src="js/blog.js"></script>
-<script src="js/search.js"></script>
-<script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/blog.js"></script>
 </body>
 </html>

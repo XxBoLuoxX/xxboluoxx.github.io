@@ -1,39 +1,30 @@
-// 全局变量
-var blogPosts = [];
-
-// DOM加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
-    // 初始化博客功能
-    if (typeof initBlog === 'function') {
-        initBlog();
+// 高亮当前导航项
+function highlightNav() {
+  const path = window.location.pathname;
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === path) {
+      link.classList.add('active');
     }
-    
-    // 初始化搜索功能（如果在分类或博文页面）
-    if ((window.location.pathname.includes('categories.html') || 
-         window.location.pathname.includes('posts.html')) &&
-        typeof initSearch === 'function') {
-        initSearch();
-    }
-    
-    // 加载随机文本
-    loadRandomText();
-});
+  });
+}
 
 // 加载随机文本
 function loadRandomText() {
-    fetch('data/random_text.txt')
-        .then(response => response.text())
-        .then(text => {
-            const lines = text.split('\n').filter(line => line.trim() !== '');
-            if (lines.length > 0) {
-                const randomIndex = Math.floor(Math.random() * lines.length);
-                const randomTextElement = document.getElementById('randomText');
-                if (randomTextElement) {
-                    randomTextElement.textContent = lines[randomIndex];
-                }
-            }
-        })
-        .catch(error => {
-            console.error('加载随机文本失败:', error);
-        });
+  const texts = [
+    "腾讯元宝申请出战",
+    "豆包为什么不能叫邓超",
+    "Wake  Up!!!",
+    "其实我根本就不会看代码",
+   "你想看什么",
+    "这是什么"
+  ];
+  const randomText = texts[Math.floor(Math.random() * texts.length)];
+  document.getElementById('randomText').textContent = randomText;
 }
+
+// 初始化页面
+document.addEventListener('DOMContentLoaded', () => {
+  highlightNav();
+  loadRandomText();
+});

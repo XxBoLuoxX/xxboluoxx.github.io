@@ -32,7 +32,7 @@ function loadBlogs() {
                     const blogId = blogPath.split('/').pop();
                     localStorage.setItem('blogId', blogId);
                     localStorage.setItem('blogContent', data);
-                    window.location.href = 'blog-detail.html';
+                    window.location.href = 'html/blog-detail.html';
                 });
                 if (blogList) {
                     blogList.appendChild(blogContainer);
@@ -84,7 +84,6 @@ function loadBlogs() {
                 const subCategoryLinks = document.querySelectorAll('.sub-category-link');
                 subCategoryLinks.forEach(subLink => {
                     const tag = subLink.dataset.tag;
-                    // 这里简单假设标签和分类有对应关系，可根据实际情况修改
                     if (category === 'all' || tag.includes(category)) {
                         subLink.style.display = 'inline-block';
                     } else {

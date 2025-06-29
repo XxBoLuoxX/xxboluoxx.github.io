@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    <title>分类</title>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <span>Logo</span>
+            <span>我的小站</span>
+        </div>
+        <nav>
+            <a href="../index.html">首页</a>
+            <a href="category.html">分类</a>
+            <a href="about.html">关于</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 博客细分内容 -->
+        <div id="sub-category-container" class="sub-category-links"></div>
+        <!-- 博客搜索功能 -->
+        <input type="text" id="search-input" placeholder="搜索博客">
+        <button id="search-button">搜索</button>
+        <div id="search-results" class="blog-list"></div>
+    </main>
+
+    <footer>
+        <div class="left-links">
+            <a href="#">超链接小图标1</a>
+            <a href="#">超链接小图标2</a>
+        </div>
+        <span class="random-text">随机文本</span>
+    </footer>
+
+    <script src="../js/blog.js"></script>
+    <script>
+        document.getElementById('search-button').addEventListener('click', function () {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const blogPosts = document.querySelectorAll('.blog-post');
+            blogPosts.forEach((post) => {
+                const article = post.querySelector('article');
+                const postTitle = article.querySelector('.post-title').textContent.toLowerCase();
+                const postContent = article.querySelector('.post-content').textContent.toLowerCase();
+                if (postTitle.includes(searchTerm) || postContent.includes(searchTerm)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

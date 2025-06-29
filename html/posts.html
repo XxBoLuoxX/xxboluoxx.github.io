@@ -3,60 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>波萝格博客</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>所有博文 - 波萝格博客</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 固定导航栏 -->
     <nav class="navbar">
-        <div class="logo">图标logo波萝格</div>
+        <a href="../index.html" class="logo-link">
+            <img src="../images/logo.png" alt="波萝格" class="logo-img">
+            <span class="logo-text">波萝格</span>
+        </a>
         <ul class="nav-links">
-            <li><a href="#">博文</a></li>
-            <li><a href="#">分类</a></li>
-            <li><a href="#">关于</a></li>
+            <li><a class="active" href="../html/posts.html">博文</a></li>
+            <li><a href="../html/categories.html">分类</a></li>
+            <li><a href="../html/about.html">关于</a></li>
         </ul>
     </nav>
 
-    <!-- 主体内容 -->
+    <!-- 主体内容 - 显示所有文章 -->
     <main class="content">
-        <!-- 文章模块1 -->
-        <article class="post-card">
-            <div class="post-header">
-                <h2>标题</h2>
-            </div>
-            <div class="post-content">
-                <p>正文内容...</p>
-                <div class="post-meta">
-                    <span>作者</span>
-                    <span>时间戳</span>
-                </div>
-            </div>
-        </article>
-
-        <!-- 文章模块2 -->
-        <article class="post-card">
-            <div class="post-header">
-                <h2>标题</h2>
-            </div>
-            <div class="post-content">
-                <p>正文内容...</p>
-                <div class="post-meta">
-                    <span>作者</span>
-                    <span>时间戳</span>
-                </div>
-            </div>
-        </article>
+        <h1 class="page-title">所有博文</h1>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="搜索博文...">
+            <button id="search-btn">搜索</button>
+        </div>
+        <div id="posts-container"></div>
     </main>
 
-    <!-- 页脚 -->
+    <!-- 固定页脚 -->
     <footer class="footer">
         <div class="social-links">
-            <a href="#" class="social-icon">超链接小图标1</a>
-            <a href="#" class="social-icon">超链接小图标2</a>
+            <a href="#" class="social-icon"><img src="../images/social-icons/github.png" alt="GitHub"></a>
+            <a href="#" class="social-icon"><img src="../images/social-icons/twitter.png" alt="Twitter"></a>
+            <a href="#" class="social-icon"><img src="../images/social-icons/weibo.png" alt="微博"></a>
+            <a href="#" class="social-icon"><img src="../images/social-icons/instagram.png" alt="Instagram"></a>
+            <a href="#" class="social-icon"><img src="../images/social-icons/linkedin.png" alt="LinkedIn"></a>
         </div>
-        <div class="random-text">随机文本</div>
+        <div class="random-text" id="randomText"></div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script type="module">
+        import { initBlog } from '../js/blog.js';
+        import { initSearch } from '../js/search.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            initBlog();
+            initSearch();
+        });
+    </script>
 </body>
 </html>

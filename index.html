@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义盒子模板</title>
+    <style>
+        /* 样式设置 */
+        .infobox {
+            background-color: black;
+            color: white;
+            border: 1px solid #ccc;
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .infobox-header {
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            text-align: left; /* 副标题左对齐 */
+        }
+        .infobox-subheader {
+            color: #ccc; /* 小标题颜色 */
+            padding: 3px 0;
+            text-align: left; /* 小标题左对齐 */
+            padding-left: 10px;
+        }
+        .infobox-content {
+            padding: 5px;
+        }
+        .infobox-content-left {
+            text-align: left;
+        }
+        .infobox-content-right {
+            text-align: right;
+        }
+        .highlight-text {
+            background-color: #808080; /* 灰色背景 */
+            color: white; /* 白色文字 */
+            padding: 3px 6px;
+            border-radius: 5px;
+            /* 不再加粗 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="infobox">
+    <div class="infobox-header">
+        <strong>这是一个测试消息</strong> <!-- 这部分已设置为左对齐 -->
+    </div>
+    <div class="infobox-subheader">
+        Buono_TEST_001 <!-- 不再使用斜体 -->
+    </div>
+    <div class="infobox-content infobox-content-left">
+        测试测试测试
+    </div>
+	 <div class="infobox-content infobox-content-left">
+        嘎嘎嘎嘎嘎嘎嘎
+    </div>
+    <div class="infobox-content">
+        <div style="display: flex; justify-content: space-between;">
+            <div class="infobox-content-left">
+                密级:公开
+            </div>
+            <div class="infobox-content-right">
+                <span class="highlight-text">懒</span>
+                波萝Buono
+            </div>
+        </div>
+    </div>
+    <div class="infobox-content infobox-content-right">
+        2025/6/29 11:35
+    </div>
+</div>
+
+</body>
+</html>

@@ -4,22 +4,22 @@ var blogPosts = [];
 // 初始化博客系统
 async function initBlog() {
     await loadBlogPosts();
-    
-    // 首页只显示最新3篇文章
+
+    // 首页只显示最新1篇文章
     if (document.getElementById('latest-posts')) {
-        renderPosts(blogPosts.slice(0, 3), 'latest-posts');
+        renderPosts(blogPosts.slice(0, 1), 'latest-posts');
     }
-    
+
     // 博文页面显示全部文章
     if (document.getElementById('posts-container')) {
         renderPosts(blogPosts, 'posts-container');
     }
-    
+
     // 分类页面渲染标签
     if (document.getElementById('categories-container')) {
         renderCategories();
     }
-    
+
     // 加载随机文本
     loadRandomText();
 
@@ -34,16 +34,16 @@ async function loadBlogPosts() {
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
-        
+
         // 获取所有博客文章链接
         const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
-            .map(a => a.getAttribute('href'))
-            .filter(href => href.endsWith('.html'))
-            .map(href => `blogs/${href}`);
-        
+           .map(a => a.getAttribute('href'))
+           .filter(href => href.endsWith('.html'))
+           .map(href => `blogs/${href}`);
+
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
-        
+
         // 按日期排序
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
@@ -77,6 +77,13 @@ function renderPosts(posts, containerId = 'posts-container') {
     if (!container) return;
 
     container.innerHTML = '';
+
+    if (posts.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.textContent = '又出bug了';
+        container.appendChild(noResults);
+        return;
+    }
 
     posts.forEach(post => {
         if (!post) return;
@@ -134,7 +141,7 @@ function renderCategories() {
 // 根据标签过滤文章
 function filterPostsByTag(tag) {
     const filteredPosts = blogPosts.filter(post => post.tags.includes(tag));
-    renderPosts(filteredPosts, 'filtered-posts');
+    renderPosts(filteredPosts, 'posts-container');
 }
 
 // 加载随机文本

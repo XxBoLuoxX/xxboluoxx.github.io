@@ -2,8 +2,8 @@
 function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
-    
-    if (searchInput && searchBtn && typeof blogPosts!== 'undefined' && typeof renderPosts!== 'undefined') {
+
+    if (searchInput && searchBtn) {
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') performSearch();
@@ -13,20 +13,20 @@ function initSearch() {
 
 function performSearch() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
-    
+
     if (!query) {
-        renderPosts(blogPosts);
+        renderPosts(blogPosts, 'posts-container');
         return;
     }
-    
-    const results = blogPosts.filter(post => 
-        post.title.toLowerCase().includes(query) || 
+
+    const results = blogPosts.filter(post =>
+        post.title.toLowerCase().includes(query) ||
         post.excerpt.toLowerCase().includes(query) ||
         post.tags.some(tag => tag.toLowerCase().includes(query))
     );
-    
-    renderPosts(results, document.getElementById('filtered-posts') ? 'filtered-posts' : undefined);
+
+    renderPosts(results, 'posts-container');
 }
 
-// 导出初始化搜索功能
-export { initSearch };
+// 初始化搜索功能
+document.addEventListener('DOMContentLoaded', initSearch);

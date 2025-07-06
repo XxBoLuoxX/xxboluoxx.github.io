@@ -30,20 +30,19 @@ async function initBlog() {
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        // 尝试使用绝对路径
-        const response = await fetch('/blogs/'); 
-        if (!response.ok) {
-            throw new Error(`请求失败，状态码: ${response.status}`);
-        }
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+        // 使用 GitHub API 获取仓库中 blogs 目录下的文件列表
+        const repoOwner = 'XxBoLuoxX';
+        const repoName = 'xxboluoxx.github.io
+'; // 替换为你的仓库名称
+        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/blogs`;
+        const response = await fetch(apiUrl);
+        const files = await response.json();
 
-        // 获取所有博客文章链接
-        const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
-           .map(a => a.getAttribute('href'))
-           .filter(href => href.endsWith('.html'))
-           .map(href => `/blogs/${href}`);
+        // 过滤出 .html 文件
+        const htmlFiles = files.filter(file => file.name.endsWith('.html'));
+
+        // 构建文章链接
+        const links = htmlFiles.map(file => `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/blogs/${file.name}`);
 
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
@@ -84,7 +83,7 @@ function renderPosts(posts, containerId = 'posts-container') {
 
     if (posts.length === 0) {
         const noResults = document.createElement('p');
-        noResults.textContent = '未找到相关文章，请尝试其他关键词或标签。';
+        noResults.textContent = '又出bug了';
         container.appendChild(noResults);
         return;
     }
@@ -159,8 +158,6 @@ async function loadRandomText() {
         if (element) element.textContent = randomText;
     } catch (error) {
         console.error('加载随机文本失败:', error);
-        const element = document.getElementById('randomText');
-        if (element) element.textContent = '随机文本加载失败，请稍后重试。';
     }
 }
 

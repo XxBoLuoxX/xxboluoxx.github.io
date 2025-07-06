@@ -1,49 +1,52 @@
 // 全局博客数据
 var blogPosts = [];
 
+// 博客文章列表（手动维护或从索引文件加载）
+const blogPostList = [
+    { url: '/blogs/post1.html' },
+    { url: '/blogs/post2.html' },
+    // 添加更多文章...
+];
+
 // 初始化博客系统
 async function initBlog() {
-    await loadBlogPosts();
+    try {
+        await loadBlogPosts();
 
-    // 首页只显示最新1篇文章
-    if (document.getElementById('latest-posts')) {
-        renderPosts(blogPosts.slice(0, 1), 'latest-posts');
+        // 首页只显示最新1篇文章
+        if (document.getElementById('latest-posts')) {
+            renderPosts(blogPosts.slice(0, 1), 'latest-posts');
+        }
+
+        // 博文页面显示全部文章
+        if (document.getElementById('posts-container')) {
+            renderPosts(blogPosts, 'posts-container');
+        }
+
+        // 分类页面渲染标签
+        if (document.getElementById('categories-container')) {
+            renderCategories();
+        }
+
+        // 加载随机文本
+        await loadRandomText();
+
+        // 初始化搜索功能
+        if (typeof initSearch === 'function') {
+            initSearch();
+        } else {
+            console.error('initSearch 函数未定义');
+        }
+    } catch (error) {
+        console.error('初始化博客系统失败:', error);
     }
-
-    // 博文页面显示全部文章
-    if (document.getElementById('posts-container')) {
-        renderPosts(blogPosts, 'posts-container');
-    }
-
-    // 分类页面渲染标签
-    if (document.getElementById('categories-container')) {
-        renderCategories();
-    }
-
-    // 加载随机文本
-    loadRandomText();
-
-    // 初始化搜索功能
-    initSearch();
 }
 
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        // 修改为绝对路径
-        const response = await fetch('/blogs/'); 
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        // 获取所有博客文章链接
-        const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
-           .map(a => a.getAttribute('href'))
-           .filter(href => href.endsWith('.html'))
-           .map(href => `/blogs/${href}`);
-
-        // 加载每篇文章的元数据
-        blogPosts = await Promise.all(links.map(loadPostMeta));
+        // 使用预定义的文章列表而非尝试浏览目录
+        blogPosts = await Promise.all(blogPostList.map(loadPostMeta));
 
         // 按日期排序
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));

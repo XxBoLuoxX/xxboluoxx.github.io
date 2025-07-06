@@ -2,21 +2,72 @@
 <html lang="zh-CN">
 <head>
     <script src="/js/loadPartials.js"></script>
-    <title>波萝格博客</title>
-    <!-- 添加必要的元数据和资源 -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>波萝格</title>
+    <style>
+        /* 原版 CSS 样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: #333;
+        }
+        
+        .blog-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .blog-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-link {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .blog-title {
+            margin-top: 0;
+            color: #007BFF;
+        }
+        
+        .blog-date {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <main class="content">
         <h1 class="page-title">最新文章</h1>
         <div id="latest-posts"></div>
     </main>
-    <!-- 确保search.js在blog.js之前加载 -->
-    <script src="/js/search.js"></script>
+    <script src="/js/main.js"></script>
     <script src="/js/blog.js"></script>
 </body>
 </html>

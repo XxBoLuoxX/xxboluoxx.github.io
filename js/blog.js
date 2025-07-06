@@ -1,166 +1,125 @@
-// 全局博客数据
-var blogPosts = [];
+// blog.js - 使用 GitHub API 获取博客列表并展示
+let blogPosts = [];
 
-// 博客文章列表（手动维护或从索引文件加载）
-const blogPostList = [
-    { url: '/blogs/post1.html' },
-    { url: '/blogs/post2.html' },
-    // 添加更多文章...
-];
-
-// 初始化博客系统
+// 初始化博客页面
 async function initBlog() {
-    try {
-        await loadBlogPosts();
-
-        // 首页只显示最新1篇文章
-        if (document.getElementById('latest-posts')) {
-            renderPosts(blogPosts.slice(0, 1), 'latest-posts');
-        }
-
-        // 博文页面显示全部文章
-        if (document.getElementById('posts-container')) {
-            renderPosts(blogPosts, 'posts-container');
-        }
-
-        // 分类页面渲染标签
-        if (document.getElementById('categories-container')) {
-            renderCategories();
-        }
-
-        // 加载随机文本
-        await loadRandomText();
-
-        // 初始化搜索功能
-        if (typeof initSearch === 'function') {
-            initSearch();
-        } else {
-            console.error('initSearch 函数未定义');
-        }
-    } catch (error) {
-        console.error('初始化博客系统失败:', error);
-    }
+    await loadBlogPosts();
+    renderBlogList();
 }
 
-// 加载所有博客文章
+// 从 GitHub API 加载博客文章列表
 async function loadBlogPosts() {
     try {
-        // 使用预定义的文章列表而非尝试浏览目录
-        blogPosts = await Promise.all(blogPostList.map(loadPostMeta));
-
-        // 按日期排序
+        // GitHub API 配置
+        const owner = 'XxBoLuoxX'; // 你的 GitHub 用户名
+        const repo = 'xxboluoxx.github.io'; // 你的仓库名
+        const path = 'blogs'; // 博客文章存放的目录
+        
+        // 构建 GitHub API 请求 URL
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        
+        // 发送请求获取文件列表
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error(`GitHub API 请求失败: ${response.status}`);
+        }
+        
+        // 解析响应数据
+        const files = await response.json();
+        
+        // 过滤并处理 HTML 文件
+        blogPosts = files
+            .filter(file => file.name.endsWith('.html'))
+            .map(file => {
+                // 提取文件名作为标题（去掉 .html 后缀）
+                const title = file.name.replace('.html', '');
+                
+                // 尝试从文件路径提取日期（假设文件名格式为 YYYY-MM-DD-title.html）
+                const dateMatch = file.name.match(/(\d{4}-\d{2}-\d{2})/);
+                const date = dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+                
+                // 构建博客文章对象
+                return {
+                    title: title,
+                    date: date,
+                    path: file.path,
+                    url: `https://${owner}.github.io/${repo}/${file.path}`
+                };
+            });
+            
+        // 按日期排序（最新的在前）
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // 缓存结果到 localStorage
+        localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
+        localStorage.setItem('blogPostsCacheTime', Date.now().toString());
+        
     } catch (error) {
         console.error('加载博客文章失败:', error);
+        
+        // 尝试使用缓存数据
+        const cachedPosts = localStorage.getItem('blogPosts');
+        if (cachedPosts) {
+            blogPosts = JSON.parse(cachedPosts);
+            console.log('使用缓存的博客列表');
+        } else {
+            showError('博客列表加载失败，请稍后重试');
+        }
     }
 }
 
-// 加载文章元数据
-async function loadPostMeta(url) {
-    try {
-        const response = await fetch(url);
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const title = doc.querySelector('title').textContent;
-        const date = doc.querySelector('meta[name="date"]').getAttribute('content');
-        const tags = doc.querySelector('meta[name="tags"]').getAttribute('content').split(',');
-        const excerpt = doc.querySelector('meta[name="excerpt"]').getAttribute('content');
-
-        return { title, date, tags, excerpt, url };
-    } catch (error) {
-        console.error(`加载文章元数据失败: ${url}`, error);
-        return null;
-    }
-}
-
-// 渲染文章
-function renderPosts(posts, containerId = 'posts-container') {
-    const container = document.getElementById(containerId);
+// 渲染博客列表到页面
+function renderBlogList() {
+    const container = document.getElementById('latest-posts');
     if (!container) return;
-
-    container.innerHTML = '';
-
-    if (posts.length === 0) {
-        const noResults = document.createElement('p');
-        noResults.textContent = '又出bug了';
-        container.appendChild(noResults);
+    
+    if (blogPosts.length === 0) {
+        container.innerHTML = '<p class="text-center text-gray-500">暂无博客文章</p>';
         return;
     }
-
-    posts.forEach(post => {
-        if (!post) return;
-
-        const postCard = document.createElement('div');
-        postCard.classList.add('post-card');
-
-        const title = document.createElement('h2');
-        title.textContent = post.title;
-        postCard.appendChild(title);
-
-        const excerpt = document.createElement('p');
-        excerpt.textContent = post.excerpt;
-        postCard.appendChild(excerpt);
-
-        const meta = document.createElement('div');
-        meta.classList.add('post-meta');
-
-        const tags = document.createElement('span');
-        tags.textContent = `标签: ${post.tags.join(', ')}`;
-        meta.appendChild(tags);
-
-        const date = document.createElement('span');
-        date.textContent = `日期: ${post.date}`;
-        meta.appendChild(date);
-
-        postCard.appendChild(meta);
-
-        container.appendChild(postCard);
+    
+    // 清空容器
+    container.innerHTML = '';
+    
+    // 创建博客列表
+    const postList = document.createElement('ul');
+    postList.className = 'blog-list grid grid-cols-1 md:grid-cols-2 gap-6';
+    
+    blogPosts.forEach(post => {
+        const listItem = document.createElement('li');
+        listItem.className = 'blog-item bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105';
+        
+        const link = document.createElement('a');
+        link.href = post.url;
+        link.className = 'blog-link block h-full';
+        link.innerHTML = `
+            <div class="p-6">
+                <h2 class="blog-title text-xl font-bold mb-2 text-gray-800">${post.title}</h2>
+                <p class="blog-date text-sm text-gray-500 mb-4">发布于 ${post.date}</p>
+                <p class="blog-excerpt text-gray-600">加载中...</p>
+            </div>
+        `;
+        
+        listItem.appendChild(link);
+        postList.appendChild(listItem);
     });
+    
+    container.appendChild(postList);
 }
 
-// 渲染分类
-function renderCategories() {
-    const container = document.getElementById('categories-container');
-    if (!container) return;
-
-    const allTags = blogPosts.flatMap(post => post.tags);
-    const uniqueTags = [...new Set(allTags)];
-
-    const tagCloud = document.createElement('div');
-    tagCloud.classList.add('tag-cloud');
-
-    uniqueTags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.classList.add('tag');
-        tagElement.textContent = tag;
-        tagElement.addEventListener('click', () => filterPostsByTag(tag));
-        tagCloud.appendChild(tagElement);
-    });
-
-    container.appendChild(tagCloud);
-}
-
-// 根据标签过滤文章
-function filterPostsByTag(tag) {
-    const filteredPosts = blogPosts.filter(post => post.tags.includes(tag));
-    renderPosts(filteredPosts, 'posts-container');
-}
-
-// 加载随机文本
-async function loadRandomText() {
-    try {
-        const response = await fetch('/data/random_text.txt');
-        const text = await response.text();
-        const texts = text.split('\n').filter(line => line.trim()!== '');
-        const randomText = texts[Math.floor(Math.random() * texts.length)];
-        const element = document.getElementById('randomText');
-        if (element) element.textContent = randomText;
-    } catch (error) {
-        console.error('加载随机文本失败:', error);
+// 显示错误信息
+function showError(message) {
+    const container = document.getElementById('latest-posts');
+    if (container) {
+        container.innerHTML = `
+            <div class="error-message bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+                <strong class="font-bold">错误:</strong>
+                <span class="block sm:inline">${message}</span>
+            </div>
+        `;
     }
 }
 
-// 初始化页面
+// 页面加载完成后初始化博客
 document.addEventListener('DOMContentLoaded', initBlog);

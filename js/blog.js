@@ -25,7 +25,11 @@ async function initBlog() {
         await loadRandomText();
 
         // 初始化搜索功能
-        initSearch();
+        if (typeof initSearch === 'function') {
+            initSearch();
+        } else {
+            console.error('initSearch 函数未定义');
+        }
     } catch (error) {
         console.error('初始化博客系统失败:', error);
     }
@@ -51,9 +55,6 @@ async function loadBlogPosts() {
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
 
-        // 过滤掉加载失败的文章
-        blogPosts = blogPosts.filter(post => post!== null);
-
         // 按日期排序
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
@@ -65,9 +66,6 @@ async function loadBlogPosts() {
 async function loadPostMeta(url) {
     try {
         const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`请求 ${url} 失败，状态码: ${response.status}`);
-        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -93,7 +91,7 @@ function renderPosts(posts, containerId = 'posts-container') {
 
     if (posts.length === 0) {
         const noResults = document.createElement('p');
-        noResults.textContent = '未找到文章';
+        noResults.textContent = '又出bug了';
         container.appendChild(noResults);
         return;
     }
@@ -161,9 +159,6 @@ function filterPostsByTag(tag) {
 async function loadRandomText() {
     try {
         const response = await fetch('/data/random_text.txt');
-        if (!response.ok) {
-            throw new Error(`请求 /data/random_text.txt 失败，状态码: ${response.status}`);
-        }
         const text = await response.text();
         const texts = text.split('\n').filter(line => line.trim()!== '');
         const randomText = texts[Math.floor(Math.random() * texts.length)];

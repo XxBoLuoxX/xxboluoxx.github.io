@@ -78,10 +78,9 @@ body {
   max-width: 1200px;
   margin: 6rem auto 2rem;
   padding: 0 1.5rem;
-  /* 新增样式 */
-  background-color: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #f9f9f9; /* 添加背景颜色 */
+  border-radius: 8px; /* 添加圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
 }
 
 .page-title {
@@ -90,19 +89,25 @@ body {
   border-bottom: 2px solid #eee;
 }
 
+/* 最新文章和文章容器 */
+#latest-posts,
+#posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 使用网格布局 */
+  grid-gap: 1.5rem; /* 网格项之间的间距 */
+}
+
 /* 文章卡片 */
 .post-card {
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 8px;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  /* 新增样式 */
-  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* 添加过渡效果 */
 }
 
 .post-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* 鼠标悬停时卡片上移 */
 }
 
 .post-meta {
@@ -151,6 +156,15 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+/* 博客内容区域 */
+.blog-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 页脚 - 黑底白字 */
@@ -202,17 +216,4 @@ body {
     gap: 1rem;
     text-align: center;
   }
-}
-
-/* 新增样式 */
-#latest-posts, #posts-container {
-  margin-top: 2rem;
-}
-
-.blog-content {
-  padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 1.5rem;
 }

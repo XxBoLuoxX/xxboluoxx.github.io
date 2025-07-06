@@ -29,4 +29,8 @@ function performSearch() {
 }
 
 // 初始化搜索功能
-document.addEventListener('DOMContentLoaded', initSearch);
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('search-input') && document.getElementById('search-btn')) {
+        initSearch();
+    }
+});

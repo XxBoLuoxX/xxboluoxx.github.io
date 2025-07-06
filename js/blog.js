@@ -22,17 +22,14 @@ async function initBlog() {
 
     // 加载随机文本
     loadRandomText();
-
-    // 初始化搜索功能
-    initSearch();
 }
 
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
         // 修改请求路径为根目录下的 blogs 文件夹
-        const response = await fetch('/blogs/'); 
-        console.log('请求 blogs/ 的响应状态:', response.status); // 添加日志输出
+        const response = await fetch('/blogs/');
+        console.log('请求 blogs/ 的响应状态:', response.status);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -43,7 +40,7 @@ async function loadBlogPosts() {
            .filter(href => href.endsWith('.html'))
            .map(href => `/blogs/${href}`);
 
-        console.log('获取到的博客文章链接:', links); // 添加日志输出
+        console.log('获取到的博客文章链接:', links);
 
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
@@ -62,7 +59,7 @@ async function loadBlogPosts() {
 async function loadPostMeta(url) {
     try {
         const response = await fetch(url);
-        console.log(`请求 ${url} 的响应状态:`, response.status); // 添加日志输出
+        console.log(`请求 ${url} 的响应状态:`, response.status);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -88,7 +85,7 @@ function renderPosts(posts, containerId = 'posts-container') {
 
     if (posts.length === 0) {
         const noResults = document.createElement('p');
-        noResults.textContent = '又出bug了';
+        noResults.textContent = '暂无文章';
         container.appendChild(noResults);
         return;
     }

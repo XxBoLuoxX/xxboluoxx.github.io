@@ -93,27 +93,23 @@ body {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
+  transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 .post-card:hover {
-<<<<<<< HEAD
-  transform: translateY(-5px); /* 鼠标悬停时卡片上移 */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 鼠标悬停时增加阴影 */
-=======
-  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影变化 */
+  transform: translateY(-2px); /* 鼠标悬停时向上移动 */
 }
 
 .post-card h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #000;
 }
 
 .post-card p {
   font-size: 1rem;
-  color: #666;
->>>>>>> parent of 01260db (1)
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .post-meta {
@@ -132,7 +128,6 @@ body {
   margin: 2rem 0;
 }
 
-/* 在 css/style.css 中添加或修改以下内容 */
 .tag {
   padding: 0.5rem 1rem;
   background: #000;
@@ -162,16 +157,6 @@ body {
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-<<<<<<< HEAD
-  transition: border-color 0.3s ease; /* 添加过渡效果 */
-=======
-  font-size: 1rem;
->>>>>>> parent of 01260db (1)
-}
-
-#search-input:focus {
-  border-color: #000; /* 输入框聚焦时边框颜色变化 */
-  outline: none; /* 移除默认聚焦轮廓 */
 }
 
 #search-btn {
@@ -181,11 +166,6 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* 添加过渡效果 */
-}
-
-#search-btn:hover {
-  background-color: #333; /* 按钮悬停时背景颜色变化 */
 }
 
 /* 页脚 - 黑底白字 */
@@ -228,28 +208,13 @@ body {
     margin-top: 1rem;
   }
   
+  .content {
+    margin-top: 8rem;
+  }
+  
   .footer {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
-}
-/* 在 css/style.css 中添加以下内容 */
-.blog-content {
-  background: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  margin: 2rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.blog-content h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.blog-content p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
 }

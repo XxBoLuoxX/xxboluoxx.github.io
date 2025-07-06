@@ -78,6 +78,10 @@ body {
   max-width: 1200px;
   margin: 6rem auto 2rem;
   padding: 0 1.5rem;
+  /* 新增样式 */
+  background-color: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .page-title {
@@ -89,16 +93,16 @@ body {
 /* 文章卡片 */
 .post-card {
   background: #f9f9f9;
-transition: box-shadow 0.3s ease;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border-bottom: 1px solid #eee; /* 添加分隔线 */
+  /* 新增样式 */
+  transition: transform 0.3s ease;
 }
 
 .post-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
 .post-meta {
@@ -178,16 +182,6 @@ transition: box-shadow 0.3s ease;
   font-style: italic;
 }
 
-/* 设置超链接颜色 */
-a {
-  color: #000; /* 将超链接颜色设置为黑色 */
-  text-decoration: none; /* 去除下划线 */
-}
-
-a:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
-}
-
 /* 响应式设计 */
 @media (max-width: 768px) {
   .navbar {
@@ -209,10 +203,16 @@ a:hover {
     text-align: center;
   }
 }
-.post-card p {
-  color: #666;
-  line-height: 1.5;
-  max-height: 6em; /* 限制摘要的最大高度 */
-  overflow: hidden;
-  text-overflow: ellipsis; /* 超出部分显示省略号 */
+
+/* 新增样式 */
+#latest-posts, #posts-container {
+  margin-top: 2rem;
+}
+
+.blog-content {
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 1.5rem;
 }

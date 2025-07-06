@@ -78,6 +78,9 @@ body {
   max-width: 1200px;
   margin: 6rem auto 2rem;
   padding: 0 1.5rem;
+  background-color: #fafafa; /* 新增：主体内容背景色 */
+  border-radius: 8px; /* 新增：主体内容圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 新增：主体内容阴影 */
 }
 
 .page-title {
@@ -165,6 +168,25 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
+  padding: 1rem; /* 新增：文章容器内边距 */
+  background-color: #fff; /* 新增：文章容器背景色 */
+  border-radius: 8px; /* 新增：文章容器圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 新增：文章容器阴影 */
+}
+
+/* 新添加的样式，用于 flex 包裹的标签 */
+.flex.flex-wrap.gap-2.mb-6 .tag {
+  padding: 0.5rem 1rem;
+  background: #000;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.flex.flex-wrap.gap-2.mb-6 .tag:hover {
+  background-color: #333;
 }
 
 /* 页脚 - 黑底白字 */
@@ -220,20 +242,4 @@ body {
   #posts-container {
     grid-template-columns: 1fr;
   }
-}
-
-/* 新添加的样式，用于 flex 包裹的标签 */
-.flex.flex-wrap.gap-2.mb-6 .tag {
-  /* 可以根据需要调整样式，这里先复用之前的.tag样式 */
-  padding: 0.5rem 1rem;
-  background: #000;
-  color: #fff;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.flex.flex-wrap.gap-2.mb-6 .tag:hover {
-  background-color: #333;
 }

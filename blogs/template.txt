@@ -10,7 +10,7 @@
 <body>
     <!-- 导航栏和头部 -->
     <header id="header-placeholder"></header>
-    
+    <br>
     <main class="content blog-content">
         <h1 class="page-title blog-title">新博客标题</h1>
         <div class="blog-meta">

@@ -89,11 +89,16 @@ body {
 /* 文章卡片 */
 .post-card {
   background: #f9f9f9;
+transition: box-shadow 0.3s ease;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border: 1px solid #ddd; /* 增加边框使文章分隔更明显 */
+  border-bottom: 1px solid #eee; /* 添加分隔线 */
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .post-meta {
@@ -203,4 +208,11 @@ a:hover {
     gap: 1rem;
     text-align: center;
   }
+}
+.post-card p {
+  color: #666;
+  line-height: 1.5;
+  max-height: 6em; /* 限制摘要的最大高度 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="/js/loadPartials.js"></script>
+    <title>分享一下我知道的两个录播姬</title>
+    <meta name="date" content="2025-07-07">
+    <meta name="tags" content="录播姬,直播工具">
+    <meta name="excerpt" content="既然把博客捣鼓明白了就分享一下吧">
+</head>
+<body>
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder"></header>
+    <main class="content blog-content">
+        <h1 class="page-title blog-title">分享一下我知道的两个录播姬</h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2025-07-07</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">录播姬,直播工具</span></span>
+        </div>
+        <div class="blog-body">
+            <p>随便往上瞎发电东西哈哈哈</p><br>
+<p>
+<h2>录播姬</h2>
+我自己最常用的一个录播姬<br>
+需要手动输入房间号添加<br>
+有点bug，比如可能录制文件提示编码错误，需要用【录播姬】→【工具箱】→【转封装】功能转为mp4格式就正常了<br>
+能录礼物，弹幕记录，美中不足的就是弹幕的用户名无法读取（因为没有登录功能，所以在b站那边估计就是游客模式）
+上手挺简单，我现在目前还在用<br>
+详情可见以下连接<br><br>
+<a href="https://rec.danmuji.org/">录播姬</a> 
+<a href="https://github.com/BililiveRecorder">录播姬 Github 页面</a> 
+</p>
+<br>
+<p>
+<h2>DDTV</h2>
+比录播姬强，我目前还没试过<br>
+有扫码登录功能，可以办到一些录播姬办不到的东西，比如关注列表一键自动导入<br>
+详情可见以下连接<br><br>
+<a href="https://ddtv.pro/">DDTV</a> 
+ <a href="https://github.com/CHKZL/DDTV">DDTV Github 页面</a> 
+</p>
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+        // 动态更新博客元信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.title;
+            const metaDate = document.querySelector('meta[name="date"]').content;
+            const metaTags = document.querySelector('meta[name="tags"]').content;
+            
+            // 更新标题
+            document.querySelector('.blog-title').textContent = title;
+            
+            // 更新日期
+            if(metaDate && metaDate !== '请填写日期') {
+                document.getElementById('blog-date').textContent = metaDate;
+            }
+            
+            // 更新标签
+            if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+                const tags = metaTags.split(',').map(tag => tag.trim());
+                document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                    `<span class="tag">${tag}</span>`
+                ).join(' ');
+            }
+        });
+    </script>
+</body>
+</html>

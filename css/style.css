@@ -34,7 +34,6 @@ body {
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 0 0 10px 10px; /* 为导航栏底部添加圆角 */
 }
 
 .logo-link {
@@ -85,15 +84,33 @@ body {
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #eee;
+  font-size: 2rem;
+  color: #000;
 }
 
 /* 文章卡片 */
 .post-card {
   background: #f9f9f9;
-  border-radius: 10px; /* 为文章卡片添加圆角 */
+  border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.post-card p {
+  font-size: 1rem;
+  color: #666;
 }
 
 .post-meta {
@@ -116,9 +133,14 @@ body {
   padding: 0.5rem 1rem;
   background: #000;
   color: #fff;
-  border-radius: 20px; /* 为分类标签添加圆角 */
+  border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tag:hover {
+  background-color: #333;
 }
 
 /* 搜索框 */
@@ -132,7 +154,14 @@ body {
   flex: 1;
   padding: 0.8rem;
   border: 1px solid #ddd;
-  border-radius: 10px; /* 为搜索输入框添加圆角 */
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 #search-btn {
@@ -140,8 +169,13 @@ body {
   background: #000;
   color: #fff;
   border: none;
-  border-radius: 10px; /* 为搜索按钮添加圆角 */
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#search-btn:hover {
+  background-color: #333;
 }
 
 /* 页脚 - 黑底白字 */
@@ -152,7 +186,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 10px 10px 0 0; /* 为页脚顶部添加圆角 */
 }
 
 .social-links {
@@ -195,4 +228,3 @@ body {
     text-align: center;
   }
 }
-    

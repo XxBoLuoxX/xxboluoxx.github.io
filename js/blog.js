@@ -30,7 +30,11 @@ async function initBlog() {
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        const response = await fetch('blogs/');
+        // 尝试使用绝对路径
+        const response = await fetch('/blogs/'); 
+        if (!response.ok) {
+            throw new Error(`请求失败，状态码: ${response.status}`);
+        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -39,7 +43,7 @@ async function loadBlogPosts() {
         const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
            .map(a => a.getAttribute('href'))
            .filter(href => href.endsWith('.html'))
-           .map(href => `blogs/${href}`);
+           .map(href => `/blogs/${href}`);
 
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
@@ -80,7 +84,7 @@ function renderPosts(posts, containerId = 'posts-container') {
 
     if (posts.length === 0) {
         const noResults = document.createElement('p');
-        noResults.textContent = '未找到相关文章，请尝试其他关键词或标签。'; // 修改提示信息
+        noResults.textContent = '未找到相关文章，请尝试其他关键词或标签。';
         container.appendChild(noResults);
         return;
     }
@@ -156,7 +160,7 @@ async function loadRandomText() {
     } catch (error) {
         console.error('加载随机文本失败:', error);
         const element = document.getElementById('randomText');
-        if (element) element.textContent = '随机文本加载失败，请稍后重试。'; // 添加默认提示
+        if (element) element.textContent = '随机文本加载失败，请稍后重试。';
     }
 }
 

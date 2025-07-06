@@ -22,6 +22,8 @@ async function loadRandomText() {
         if (element) element.textContent = randomText;
     } catch (error) {
         console.error('加载随机文本失败:', error);
+        const element = document.getElementById('randomText');
+        if (element) element.textContent = '随机文本加载失败，请稍后重试。'; // 添加默认提示
     }
 }
 

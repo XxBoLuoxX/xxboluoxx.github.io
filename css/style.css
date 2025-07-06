@@ -12,7 +12,7 @@
 }
 
 body {
-  font-family: 'JingNanBold', 'Arial', sans-serif; /* 应用自定义字体 */
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -84,8 +84,6 @@ body {
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #eee;
-  font-size: 2rem;
-  color: #000;
 }
 
 /* 文章卡片 */
@@ -95,31 +93,12 @@ body {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
 }
 
 .post-card:hover {
-  transform: translateY(-5px);
-}
-
-.post-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #000;
-}
-
-.post-card h2 a {
-  color: #000;
-  text-decoration: none;
-}
-
-.post-card h2 a:hover {
-  text-decoration: underline;
-}
-
-.post-card p {
-  font-size: 1rem;
-  color: #666;
+  transform: translateY(-5px); /* 鼠标悬停时卡片上移 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 鼠标悬停时增加阴影 */
 }
 
 .post-meta {
@@ -145,11 +124,11 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 
 .tag:hover {
-  background-color: #333;
+  background-color: #333; /* 标签悬停时背景颜色变化 */
 }
 
 /* 搜索框 */
@@ -164,14 +143,12 @@ body {
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease; /* 添加过渡效果 */
 }
 
 #search-input:focus {
-  outline: none;
-  border-color: #000;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border-color: #000; /* 输入框聚焦时边框颜色变化 */
+  outline: none; /* 移除默认聚焦轮廓 */
 }
 
 #search-btn {
@@ -181,11 +158,11 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease; /* 添加过渡效果 */
 }
 
 #search-btn:hover {
-  background-color: #333;
+  background-color: #333; /* 按钮悬停时背景颜色变化 */
 }
 
 /* 页脚 - 黑底白字 */

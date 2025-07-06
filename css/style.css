@@ -48,6 +48,8 @@ body {
 .logo-img {
   height: 40px;
   margin-right: 10px;
+  /* 添加调试样式 */
+  border: 1px solid red; 
 }
 
 .nav-links {
@@ -162,6 +164,8 @@ body {
   height: 24px;
   filter: invert(1);
   transition: transform 0.3s;
+  /* 添加调试样式 */
+  border: 1px solid red; 
 }
 
 .social-icon:hover img {

@@ -3,34 +3,41 @@ var blogPosts = [];
 
 // 初始化博客系统
 async function initBlog() {
-    await loadBlogPosts();
+    try {
+        await loadBlogPosts();
 
-    // 首页只显示最新1篇文章
-    if (document.getElementById('latest-posts')) {
-        renderPosts(blogPosts.slice(0, 1), 'latest-posts');
+        // 首页只显示最新1篇文章
+        if (document.getElementById('latest-posts')) {
+            renderPosts(blogPosts.slice(0, 1), 'latest-posts');
+        }
+
+        // 博文页面显示全部文章
+        if (document.getElementById('posts-container')) {
+            renderPosts(blogPosts, 'posts-container');
+        }
+
+        // 分类页面渲染标签
+        if (document.getElementById('categories-container')) {
+            renderCategories();
+        }
+
+        // 加载随机文本
+        await loadRandomText();
+
+        // 初始化搜索功能
+        initSearch();
+    } catch (error) {
+        console.error('初始化博客系统失败:', error);
     }
-
-    // 博文页面显示全部文章
-    if (document.getElementById('posts-container')) {
-        renderPosts(blogPosts, 'posts-container');
-    }
-
-    // 分类页面渲染标签
-    if (document.getElementById('categories-container')) {
-        renderCategories();
-    }
-
-    // 加载随机文本
-    loadRandomText();
-
-    // 初始化搜索功能
-    initSearch();
 }
 
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
         const response = await fetch('blogs/');
+        if (!response.ok) {
+            throw new Error(`请求 blogs/ 失败，状态码: ${response.status}`);
+        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -44,6 +51,9 @@ async function loadBlogPosts() {
         // 加载每篇文章的元数据
         blogPosts = await Promise.all(links.map(loadPostMeta));
 
+        // 过滤掉加载失败的文章
+        blogPosts = blogPosts.filter(post => post!== null);
+
         // 按日期排序
         blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (error) {
@@ -55,6 +65,9 @@ async function loadBlogPosts() {
 async function loadPostMeta(url) {
     try {
         const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`请求 ${url} 失败，状态码: ${response.status}`);
+        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -80,7 +93,7 @@ function renderPosts(posts, containerId = 'posts-container') {
 
     if (posts.length === 0) {
         const noResults = document.createElement('p');
-        noResults.textContent = '又出bug了';
+        noResults.textContent = '未找到文章';
         container.appendChild(noResults);
         return;
     }
@@ -148,6 +161,9 @@ function filterPostsByTag(tag) {
 async function loadRandomText() {
     try {
         const response = await fetch('/data/random_text.txt');
+        if (!response.ok) {
+            throw new Error(`请求 /data/random_text.txt 失败，状态码: ${response.status}`);
+        }
         const text = await response.text();
         const texts = text.split('\n').filter(line => line.trim()!== '');
         const randomText = texts[Math.floor(Math.random() * texts.length)];

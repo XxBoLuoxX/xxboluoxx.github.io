@@ -3,46 +3,35 @@ var blogPosts = [];
 
 // 初始化博客系统
 async function initBlog() {
-    try {
-        await loadBlogPosts();
+    await loadBlogPosts();
 
-        // 首页只显示最新1篇文章
-        if (document.getElementById('latest-posts')) {
-            renderPosts(blogPosts.slice(0, 1), 'latest-posts');
-        }
-
-        // 博文页面显示全部文章
-        if (document.getElementById('posts-container')) {
-            renderPosts(blogPosts, 'posts-container');
-        }
-
-        // 分类页面渲染标签
-        if (document.getElementById('categories-container')) {
-            renderCategories();
-        }
-
-        // 加载随机文本
-        await loadRandomText();
-
-        // 初始化搜索功能
-        if (typeof initSearch === 'function') {
-            initSearch();
-        } else {
-            console.error('initSearch 函数未定义');
-        }
-    } catch (error) {
-        console.error('初始化博客系统失败:', error);
+    // 首页只显示最新1篇文章
+    if (document.getElementById('latest-posts')) {
+        renderPosts(blogPosts.slice(0, 1), 'latest-posts');
     }
+
+    // 博文页面显示全部文章
+    if (document.getElementById('posts-container')) {
+        renderPosts(blogPosts, 'posts-container');
+    }
+
+    // 分类页面渲染标签
+    if (document.getElementById('categories-container')) {
+        renderCategories();
+    }
+
+    // 加载随机文本
+    loadRandomText();
+
+    // 初始化搜索功能
+    initSearch();
 }
 
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        // 修改路径为根目录下的 blogs 文件夹
+        // 修改为绝对路径
         const response = await fetch('/blogs/'); 
-        if (!response.ok) {
-            throw new Error(`请求 blogs/ 失败，状态码: ${response.status}`);
-        }
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');

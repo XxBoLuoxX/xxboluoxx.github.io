@@ -20,6 +20,9 @@ body {
   background: white;
   color: #333;
 }
+a:visited {
+    color: inherit;
+}
 
 /* 导航栏 - 黑底白字 */
 .navbar {

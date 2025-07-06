@@ -30,7 +30,8 @@ async function initBlog() {
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        const response = await fetch('blogs/');
+        // 修改请求路径为根目录下的 blogs 文件夹
+        const response = await fetch('/blogs/'); 
         console.log('请求 blogs/ 的响应状态:', response.status); // 添加日志输出
         const html = await response.text();
         const parser = new DOMParser();
@@ -40,7 +41,7 @@ async function loadBlogPosts() {
         const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
            .map(a => a.getAttribute('href'))
            .filter(href => href.endsWith('.html'))
-           .map(href => `blogs/${href}`);
+           .map(href => `/blogs/${href}`);
 
         console.log('获取到的博客文章链接:', links); // 添加日志输出
 

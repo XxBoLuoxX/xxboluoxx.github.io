@@ -77,10 +77,10 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 6rem auto 2rem;
-  padding: 0 1.5rem;
-  background-color: #fafafa; /* 新增：主体内容背景色 */
-  border-radius: 8px; /* 新增：主体内容圆角 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 新增：主体内容阴影 */
+  padding: 2rem; /* 增加内边距 */
+  background-color: #f9f9f9; /* 设置背景颜色 */
+  border-radius: 8px; /* 添加圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
 }
 
 .page-title {
@@ -91,7 +91,7 @@ body {
 
 /* 文章卡片 */
 .post-card {
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
@@ -168,10 +168,22 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
-  padding: 1rem; /* 新增：文章容器内边距 */
-  background-color: #fff; /* 新增：文章容器背景色 */
-  border-radius: 8px; /* 新增：文章容器圆角 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 新增：文章容器阴影 */
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 最新文章容器 */
+#latest-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* 新添加的样式，用于 flex 包裹的标签 */
@@ -239,7 +251,7 @@ body {
     text-align: center;
   }
   
-  #posts-container {
+  #posts-container, #latest-posts {
     grid-template-columns: 1fr;
   }
 }

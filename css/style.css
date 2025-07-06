@@ -132,6 +132,7 @@ body {
   margin: 2rem 0;
 }
 
+/* 在 css/style.css 中添加或修改以下内容 */
 .tag {
   padding: 0.5rem 1rem;
   background: #000;
@@ -139,11 +140,14 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* 添加过渡效果 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 .tag:hover {
-  background-color: #333; /* 标签悬停时背景颜色变化 */
+  background: #333; /* 鼠标悬停时背景颜色变化 */
+  transform: translateY(-2px); /* 鼠标悬停时向上移动 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影变化 */
 }
 
 /* 搜索框 */
@@ -233,4 +237,23 @@ body {
     gap: 1rem;
     text-align: center;
   }
+}
+/* 在 css/style.css 中添加以下内容 */
+.blog-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }

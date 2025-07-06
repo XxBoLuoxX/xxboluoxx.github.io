@@ -77,7 +77,16 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 6rem auto 2rem;
-  padding: 0 1.5rem;
+  padding: 2rem; /* 增加内边距 */
+  background-color: #fafafa; /* 添加背景颜色 */
+  border: 1px solid #e0e0e0; /* 添加边框 */
+  border-radius: 8px; /* 添加圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 添加阴影 */
+  transition: box-shadow 0.3s ease; /* 添加过渡效果 */
+}
+
+.content:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 鼠标悬停时阴影变化 */
 }
 
 .page-title {
@@ -220,6 +229,7 @@ body {
   
   .content {
     margin-top: 8rem;
+    padding: 1.5rem; /* 小屏幕时减少内边距 */
   }
   
   .footer {

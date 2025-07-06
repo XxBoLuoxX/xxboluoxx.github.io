@@ -76,69 +76,54 @@ body {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  margin: 6rem auto 2rem;
+  margin: 6rem auto 2rem; /* 让内容块水平居中 */
   padding: 0 1.5rem;
+  text-align: left; /* 让内容块内的文本默认靠左 */
 }
 
 .page-title {
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #eee;
-  font-size: 2.5rem; /* 增大标题字体大小 */
-  color: #007BFF; /* 标题颜色 */
-  text-align: center; /* 标题居中显示 */
-  text-transform: uppercase; /* 标题字母大写 */
-  letter-spacing: 2px; /* 字母间距 */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 文字阴影 */
+  font-size: 2rem;
+  color: #000;
+  text-align: left; /* 标题靠左显示 */
 }
 
 /* 文章卡片 */
 .post-card {
   background: #f9f9f9;
-  border-radius: 12px; /* 增大圆角 */
-  padding: 2rem; /* 增大内边距 */
-  margin-bottom: 2rem; /* 增大外边距 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增大阴影 */
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease; /* 添加过渡效果 */
-  position: relative; /* 为绝对定位做准备 */
-  overflow: hidden; /* 隐藏溢出内容 */
 }
 
 .post-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影变化 */
-  transform: translateY(-5px); /* 鼠标悬停时向上移动 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影变化 */
+  transform: translateY(-2px); /* 鼠标悬停时向上移动 */
   background: #f0f0f0; /* 鼠标悬停时背景颜色变化 */
 }
 
 .post-card h2 {
-  font-size: 1.8rem; /* 增大文章标题字体大小 */
-  margin-bottom: 0.8rem; /* 增大标题底部外边距 */
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
   color: #007BFF; /* 文章标题颜色 */
-  transition: color 0.3s ease; /* 标题颜色过渡效果 */
-}
-
-.post-card h2:hover {
-  color: #0056b3; /* 鼠标悬停时标题颜色变化 */
 }
 
 .post-card p {
-  font-size: 1.1rem; /* 增大文章摘要字体大小 */
-  line-height: 1.7; /* 增大行高 */
-  margin-bottom: 1.2rem; /* 增大摘要底部外边距 */
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .post-meta {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.2rem; /* 增大元数据顶部外边距 */
+  margin-top: 1rem;
   color: #666;
-  font-size: 0.95rem; /* 增大元数据字体大小 */
-}
-
-.post-meta span {
-  background: rgba(0, 0, 0, 0.05); /* 元数据背景颜色 */
-  padding: 0.3rem 0.6rem; /* 元数据内边距 */
-  border-radius: 4px; /* 元数据圆角 */
+  font-size: 0.9rem;
 }
 
 /* 分类标签 */

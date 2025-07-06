@@ -1,125 +1,100 @@
 // 全局博客数据
 var blogPosts = [];
-const CACHE_DURATION = 10 * 60 * 1000; // 缓存有效期10分钟
 
 // 初始化博客系统
 async function initBlog() {
-    showLoading(true);
     try {
+        // 显示加载状态
+        showLoading(true);
+        
+        // 加载博客文章
         await loadBlogPosts();
+        
+        // 渲染博客内容
         renderBlogContent();
+        
     } catch (error) {
-        showError(`加载失败: ${error.message}`);
+        console.error('初始化博客失败:', error);
+        showError('加载博客内容失败，请稍后再试');
     } finally {
+        // 隐藏加载状态
         showLoading(false);
     }
 }
 
-// 使用 GitHub API 加载博客文章列表
+// 加载所有博客文章
 async function loadBlogPosts() {
-    // 尝试使用缓存
-    const cachedPosts = getCachedBlogPosts();
-    if (cachedPosts) {
-        console.log('使用缓存的博客列表');
-        blogPosts = cachedPosts;
-        return;
-    }
-
     try {
-        // GitHub API 配置
-        const owner = 'xxboluoxx'; // 你的 GitHub 用户名
-        const repo = 'xxboluoxx.github.io'; // 你的仓库名
-        const path = 'blogs'; // 博客文章存放的目录
+        // 修改请求路径为根目录下的 blogs 文件夹
+        const response = await fetch('/blogs/');
         
-        // 构建 GitHub API 请求 URL
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        
-        // 发送请求获取文件列表
-        const response = await fetch(apiUrl);
-        
+        // 检查响应状态
         if (!response.ok) {
-            throw new Error(`GitHub API 请求失败: ${response.status}`);
+            throw new Error(`请求失败: ${response.status}`);
         }
         
-        // 解析响应数据
-        const files = await response.json();
-        
-        // 过滤并处理 HTML 文件
-        const blogFiles = files
-            .filter(file => file.name.endsWith('.html'))
-            .map(file => ({
-                name: file.name,
-                path: file.path,
-                url: `/${file.path}`
-            }));
-
-        console.log('获取到的博客文件:', blogFiles);
-        
-        // 并行加载每篇文章的元数据
-        const postsWithMetadata = await Promise.all(
-            blogFiles.map(file => fetchPostMetadata(file))
-        );
-        
-        // 过滤掉加载失败的文章
-        blogPosts = postsWithMetadata.filter(post => post!== null);
-        
-        // 按日期排序（最新的在前）
-        blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        // 缓存结果
-        cacheBlogPosts(blogPosts);
-        
-        console.log('从 GitHub API 加载博客列表成功:', blogPosts);
-        
-    } catch (error) {
-        console.error('加载博客文章失败:', error);
-        throw error;
-    }
-}
-
-// 获取文章元数据（标题、日期、标签等）
-async function fetchPostMetadata(file) {
-    try {
-        const response = await fetch(file.url);
-        if (!response.ok) throw new Error(`获取文章内容失败: ${response.status}`);
-        
+        console.log('请求 blogs/ 的响应状态:', response.status);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
+
+        // 获取所有博客文章链接
+        const links = Array.from(doc.querySelectorAll('a[href$=".html"]'))
+           .map(a => a.getAttribute('href'))
+           .filter(href => href.endsWith('.html'))
+           .map(href => `/blogs/${href}`);
+
+        console.log('获取到的博客文章链接:', links);
+
+        // 并行加载每篇文章的元数据
+        const postsWithMetadata = await Promise.all(
+            links.map(loadPostMeta)
+        );
+
+        // 过滤掉加载失败的文章
+        blogPosts = postsWithMetadata.filter(post => post!== null);
+
+        // 按日期排序
+        blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
         
-        // 提取元数据
-        const title = doc.querySelector('title')?.textContent || file.name.replace('.html', '');
-        const dateMeta = doc.querySelector('meta[name="date"]');
-        const tagsMeta = doc.querySelector('meta[name="tags"]');
-        const excerptMeta = doc.querySelector('meta[name="excerpt"]');
+        console.log('成功加载博客文章:', blogPosts.length);
         
-        const date = dateMeta?.getAttribute('content') || 
-                    extractDateFromFilename(file.name) || 
-                    new Date().toISOString().split('T')[0];
-        
-        const tags = tagsMeta?.getAttribute('content')?.split(',')?.filter(t => t.trim()) || [];
-        const excerpt = excerptMeta?.getAttribute('content') || '阅读更多...';
-        
-        return {
-            ...file,
-            title,
-            date,
-            tags,
-            excerpt
-        };
     } catch (error) {
-        console.error(`获取文章 ${file.name} 元数据失败:`, error);
-        return null;
+        console.error('加载博客文章失败:', error);
+        throw error; // 向上抛出错误，由 initBlog 处理
     }
 }
 
-// 从文件名提取日期（格式：YYYY-MM-DD-title.html）
-function extractDateFromFilename(filename) {
-    const match = filename.match(/(\d{4}-\d{2}-\d{2})/);
-    return match ? match[1] : null;
+// 加载文章元数据
+async function loadPostMeta(url) {
+    try {
+        const response = await fetch(url);
+        
+        // 检查响应状态
+        if (!response.ok) {
+            console.warn(`获取文章 ${url} 失败: ${response.status}`);
+            return null;
+        }
+        
+        console.log(`请求 ${url} 的响应状态:`, response.status);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        // 提取元数据（添加安全检查）
+        const title = doc.querySelector('title')?.textContent || '未找到标题';
+        const date = doc.querySelector('meta[name="date"]')?.getAttribute('content') || '未找到日期';
+        const tags = (doc.querySelector('meta[name="tags"]')?.getAttribute('content') || '').split(',');
+        const excerpt = doc.querySelector('meta[name="excerpt"]')?.getAttribute('content') || '未找到摘要';
+
+        return { title, date, tags, excerpt, url };
+    } catch (error) {
+        console.error(`加载文章元数据失败: ${url}`, error);
+        return null; // 返回 null 而不是抛出错误，避免中断整个过程
+    }
 }
 
-// 渲染博客内容到不同页面
+// 渲染博客内容
 function renderBlogContent() {
     // 首页只显示最新1篇文章
     if (document.getElementById('latest-posts')) {
@@ -141,7 +116,7 @@ function renderBlogContent() {
 }
 
 // 渲染文章列表
-function renderPosts(posts, containerId) {
+function renderPosts(posts, containerId = 'posts-container') {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -252,36 +227,6 @@ function showError(message) {
     if (errorElement) {
         errorElement.textContent = message;
         errorElement.style.display = 'block';
-    }
-}
-
-// 缓存博客文章到 localStorage
-function cacheBlogPosts(posts) {
-    try {
-        localStorage.setItem('blogPosts', JSON.stringify(posts));
-        localStorage.setItem('blogPostsCacheTime', Date.now().toString());
-    } catch (error) {
-        console.error('缓存博客列表失败:', error);
-    }
-}
-
-// 获取缓存的博客文章
-function getCachedBlogPosts() {
-    try {
-        const cachedPosts = localStorage.getItem('blogPosts');
-        const cacheTime = localStorage.getItem('blogPostsCacheTime');
-        
-        if (cachedPosts && cacheTime) {
-            const age = Date.now() - parseInt(cacheTime);
-            if (age < CACHE_DURATION) {
-                return JSON.parse(cachedPosts);
-            }
-        }
-        
-        return null;
-    } catch (error) {
-        console.error('获取缓存的博客列表失败:', error);
-        return null;
     }
 }
 

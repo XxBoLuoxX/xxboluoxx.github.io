@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="/js/loadPartials.js"></script>
+    <title>【补档】403连续剧小短文：《这到底是不是梦》</title>
+    <meta name="date" content="2024/4/6 11:23:35">
+    <meta name="tags" content="403，小说">
+    <meta name="excerpt" content="在某个小网站上瞎写的小说">
+</head>
+<body>
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder">【补档】403连续剧小短文：《这到底是不是梦》</header>
+    <main class="content blog-content">
+        <h1 class="page-title blog-title"></h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2024/4/6 11:23:35</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">403，小说</span></span>
+        </div>
+        <div class="blog-body">
+            <p>在某个小网站上瞎写的小说</p><br>
+<p>
+<h2>起源01 这到底是不是梦</h2>
+我再一次从床上醒来
+<br>
+我不清楚这一次还是不是梦
+<br>
+我看着窗外那猩红却又巨大的月亮
+<br>
+开始不受控制的从窗户外跳了下去
+<br>
+<br>
+随着一阵阵刺痛感传来
+<br>
+我睁开了眼
+<br>
+发现我还在床上面
+<br>
+只不过从平躺变为了趴在床上
+<br>
+<br>
+不知什么时候电脑桌上面多了点东西
+<br>
+我起身查看
+<br>
+发现了一支钢笔
+<br>
+我记得我已经很久没有写过字了
+<br>
+应该没有理由会买一支钢笔放家里
+<br>
+于是我站在桌前
+<br>
+看着那只钢笔
+<br>
+随后打开笔盖
+<br>
+刺进了我的双眼
+</p>
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+        // 动态更新博客元信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.title;
+            const metaDate = document.querySelector('meta[name="date"]').content;
+            const metaTags = document.querySelector('meta[name="tags"]').content;
+            
+            // 更新标题
+            document.querySelector('.blog-title').textContent = title;
+            
+            // 更新日期
+            if(metaDate && metaDate !== '请填写日期') {
+                document.getElementById('blog-date').textContent = metaDate;
+            }
+            
+            // 更新标签
+            if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+                const tags = metaTags.split(',').map(tag => tag.trim());
+                document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                    `<span class="tag">${tag}</span>`
+                ).join(' ');
+            }
+        });
+    </script>
+</body>
+</html>

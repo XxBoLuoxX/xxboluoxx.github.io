@@ -8,10 +8,17 @@
     <meta name="excerpt" content="录播姬">
 </head>
 <body>
-    <div class="blog-content">
-        <h1>两个录播姬</h1>
-        <p>给自己稍微留个档</p>
-        <!-- 文章内容 -->
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder"></header>
+    
+    <main class="content blog-content">
+        <h1 class="page-title blog-title">两个录播姬</h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2025-07-07</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">录播姬,直播工具</span></span>
+        </div>
+        <div class="blog-body">
+            <p>给自己稍微留个档</p>
 https://ddtv.pro/
 <br>
 https://github.com/CHKZL/DDTV
@@ -20,9 +27,38 @@ https://github.com/CHKZL/DDTV
 https://rec.danmuji.org/
 <br>
 https://github.com/BililiveRecorder
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
 
-    </div>
     <script src="/js/main.js"></script>
     <script src="/js/blog.js"></script>
+    <script>
+        // 动态更新博客元信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.title;
+            const metaDate = document.querySelector('meta[name="date"]').content;
+            const metaTags = document.querySelector('meta[name="tags"]').content;
+            
+            // 更新标题
+            document.querySelector('.blog-title').textContent = title;
+            
+            // 更新日期
+            if(metaDate && metaDate !== '请填写日期') {
+                document.getElementById('blog-date').textContent = metaDate;
+            }
+            
+            // 更新标签
+            if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+                const tags = metaTags.split(',').map(tag => tag.trim());
+                document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                    `<span class="tag">${tag}</span>`
+                ).join(' ');
+            }
+        });
+    </script>
 </body>
 </html>

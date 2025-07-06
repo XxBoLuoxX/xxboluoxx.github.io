@@ -38,7 +38,7 @@ async function initBlog() {
 // 加载所有博客文章
 async function loadBlogPosts() {
     try {
-        // 根据实际情况修改路径
+        // 修改路径为根目录下的 blogs 文件夹
         const response = await fetch('/blogs/'); 
         if (!response.ok) {
             throw new Error(`请求 blogs/ 失败，状态码: ${response.status}`);

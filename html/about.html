@@ -34,5 +34,22 @@
   </main>
   <script src="/js/search.js"></script> <!-- 确保 search.js 在 blog.js 之前加载 -->
   <script src="/js/blog.js"></script>
+  <script>
+    // 图片旋转控制脚本
+    document.querySelectorAll('.image-container img').forEach(img => {
+      img.addEventListener('mouseleave', () => {
+        // 获取当前旋转角度
+        const matrix = window.getComputedStyle(img).getPropertyValue('transform');
+        const matrix3d = new DOMMatrix(matrix);
+        const angle = Math.round(Math.atan2(matrix3d.b, matrix3d.a) * (180 / Math.PI));
+        
+        // 确保角度在0-360之间
+        const normalizedAngle = ((angle % 360) + 360) % 360;
+        
+        // 更新CSS变量
+        img.style.setProperty('--rotation', normalizedAngle);
+      });
+    });
+  </script>
 </body>
 </html>

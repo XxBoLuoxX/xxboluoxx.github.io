@@ -143,7 +143,7 @@ function renderPosts(posts, containerId) {
 
     posts.forEach(post => {
         const postCard = document.createElement('article');
-        postCard.className = 'bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all hover:shadow-lg';
+        postCard.className = 'bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all hover:shadow-lg w-full';
         
         postCard.innerHTML = `
             <div class="p-6">

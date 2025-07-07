@@ -598,46 +598,46 @@ a:hover {
   border: 1px solid #ffcccc;
 }
 
+
+
 /* 并排图片容器 */
 .image-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem; /* 图片之间的间距 */
   margin: 1.5rem 0;
 }
 
 .image-container a {
-  flex: 1; /* 平均分配宽度 */
+  width: 25%; /* 设置每个链接宽度为 25% */
   transition: transform 0.3s ease;
 }
 
 .image-container a:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .image-container img {
-  width: 25%;
+  width: 100%; /* 图片填充父容器 */
   height: auto;
-  max-height: 150px; /* 限制最大高度 */
-  object-fit: contain; /* 保持图片比例 */
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px; /* 保留圆角 */
+  box-shadow: none; /* 移除阴影 */
+  border: none; /* 确保无边框 */
   transition: all 0.3s ease;
 }
 
 .image-container img:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 悬停时添加轻微阴影 */
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
   .image-container {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-wrap: wrap;
   }
   
-  .image-container img {
-    max-height: none;
+  .image-container a {
+    width: 48%; /* 在小屏幕上每行显示2个图片 */
+    margin-bottom: 1rem;
   }
 }

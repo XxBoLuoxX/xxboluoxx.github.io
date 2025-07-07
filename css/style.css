@@ -441,7 +441,7 @@ body {
 .footer {
   background: var(--primary);
   color: #fff;
-  padding: 0.75rem 1rem; /* 减少内边距，使页脚大约为原来的一半 */
+  padding: 0.75rem 1rem; /* 保持小内边距 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -456,12 +456,12 @@ body {
 
 .social-links {
   display: flex;
-  gap: 1rem; /* 减少社交图标间距 */
+  gap: 1.5rem; /* 恢复社交图标间距 */
 }
 
 
 .social-icon img {
-  height: 18px; /* 减小社交图标大小 */
+  height: 24px; /* 恢复社交图标大小 */
   filter: invert(1);
   transition: transform 0.3s ease;
 }
@@ -474,7 +474,7 @@ body {
 
 .random-text {
   font-style: italic;
-  font-size: 0.9rem; /* 减小文字大小 */
+  font-size: 1rem; /* 恢复文字大小 */
 }
 
 
@@ -532,9 +532,9 @@ a:hover {
   
   .footer {
     flex-direction: column;
-    gap: 0.5rem; /* 减小间距 */
+    gap: 1rem;
     text-align: center;
-    padding: 0.75rem; /* 保持小屏幕页脚大小一致 */
+    padding: 1rem; /* 小屏幕上保持适当的内边距 */
   }
   
   .post-card {

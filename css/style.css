@@ -61,10 +61,12 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   transition: transform 0.3s ease;
+  padding: 0; /* 移除内边距 */
 }
 
 .logo-link:hover {
   transform: scale(1.03);
+  background: none; /* 移除背景 */
 }
 
 .logo-img {
@@ -88,12 +90,11 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+  padding: 0; /* 移除内边距 */
 }
 
 .nav-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: none; /* 移除背景 */
 }
 
 .nav-links a::after {

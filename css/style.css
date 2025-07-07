@@ -20,6 +20,8 @@ body {
   flex-direction: column;
   background: #f9f9f9;
   color: #333;
+  padding-bottom: 80px; /* 为固定的页脚留出空间 */
+  position: relative; /* 确保页脚相对于body定位 */
 }
 
 
@@ -443,6 +445,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* 固定在底部 */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* 确保页脚在其他元素之上 */
 }
 
 
@@ -525,6 +533,7 @@ a:hover {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    padding: 1rem;
   }
   
   .post-card {
@@ -542,6 +551,10 @@ a:hover {
   
   .blog-content::before {
     border-radius: 10px 0 0 10px; /* 匹配小屏幕圆角 */
+  }
+  
+  body {
+    padding-bottom: 120px; /* 小屏幕上为页脚留出更多空间 */
   }
 }
 

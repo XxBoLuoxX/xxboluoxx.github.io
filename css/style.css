@@ -54,7 +54,7 @@ body {
 .navbar {
   background: var(--primary);
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem; /* 保持原有内边距 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,13 +63,12 @@ body {
   top: 0;
   z-index: 1000;
   box-shadow: var(--shadow-light);
-  transition: all 0.4s ease;
+  transition: background-color 0.3s ease;
 }
 
 
 .navbar:hover {
   background: var(--primary-dark);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 
@@ -79,28 +78,27 @@ body {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1.2rem;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  padding: 0;
+  font-size: 1.2rem; /* 保持原有字体大小 */
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0; /* 移除内边距 */
 }
 
 
 .logo-link:hover {
-  transform: scale(1.03);
-  background: none;
+  transform: scale(1.03); /* 保持原有缩放比例 */
+  background: none; /* 移除背景 */
 }
 
 
 .logo-img {
-  height: 65px; /* 仅增大logo图片尺寸 */
+  height: 65px; /* 增大logo图片尺寸 */
   margin-right: 10px;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform-origin: center center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更流畅的动画曲线 */
 }
 
 
 .logo-link:hover .logo-img {
-  transform: rotate(3deg) scale(1.05);
+  transform: rotate(3deg) scale(1.05); /* 增大旋转角度并增加缩放 */
 }
 
 
@@ -116,12 +114,12 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0;
+  padding: 0; /* 移除内边距 */
 }
 
 
 .nav-links a:hover {
-  background: none;
+  background: none; /* 移除背景 */
   opacity: 0.8;
 }
 
@@ -155,14 +153,14 @@ body {
   max-width: 1200px;
   margin: 6rem auto 2rem;
   padding: 0 1.5rem;
-  border-radius: 15px;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-light);
-  transition: all 0.3s ease;
+  border-radius: 15px; /* 添加圆角 */
+  background: var(--card-bg); /* 添加背景色 */
+  box-shadow: var(--shadow-light); /* 添加阴影 */
+  transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 .content:hover {
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-medium); /* 悬停时阴影加深 */
 }
 
 
@@ -226,16 +224,16 @@ body {
   margin-top: 2rem;
   padding: 1.5rem 2rem;
   background: #f9f9f9;
-  border-radius: 15px;
+  border-radius: 15px; /* 增大圆角半径 */
   position: relative;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-  transition: all 0.3s ease;
+  border: 1px solid var(--border-color); /* 添加边框 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* 添加轻微阴影 */
+  transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 .blog-content:hover {
-  box-shadow: var(--shadow-light);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-light); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 悬停时轻微上浮 */
 }
 
 
@@ -247,7 +245,7 @@ body {
   width: 4px;
   height: 100%;
   background: var(--primary);
-  border-radius: 15px 0 0 15px;
+  border-radius: 15px 0 0 15px; /* 匹配博客内容的圆角 */
 }
 
 
@@ -451,26 +449,27 @@ body {
 .footer {
   background: var(--primary);
   color: #fff;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem; /* 保持小内边距 */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* 固定在底部 */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 999; /* 确保页脚在其他元素之上 */
 }
 
 
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.5rem; /* 恢复社交图标间距 */
 }
 
 
 .social-icon img {
-  height: 24px;
+  height: 24px; /* 恢复社交图标大小 */
   filter: invert(1);
   transition: transform 0.3s ease;
 }
@@ -482,10 +481,10 @@ body {
 
 
 .random-text {
-  font-family: 'CEFFontsCJK', sans-serif;
+  font-family: 'CEFFontsCJK', sans-serif; /* 使用新字体 */
   font-style: italic;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1rem; /* 恢复文字大小 */
+  font-weight: bold; /* 添加加粗效果 */
 }
 
 
@@ -500,18 +499,20 @@ a {
 }
 
 a:hover {
+  /* 移除背景色变化 */
+  /* background: var(--link-bg); */
   transform: scale(var(--hover-scale));
 }
 
 /* 页脚链接单独设置 */
 .footer a {
   color: #fff;
-  padding: 0;
+  padding: 0; /* 移除内边距 */
 }
 
 .footer a:hover {
-  background: none;
-  transform: scale(1.1);
+  background: none; /* 确保无背景 */
+  transform: scale(1.1); /* 单独设置页脚链接的放大比例 */
 }
 
 
@@ -532,7 +533,7 @@ a:hover {
     grid-template-columns: 1fr;
     margin-top: 8rem;
     padding: 0 1rem;
-    border-radius: 10px;
+    border-radius: 10px; /* 小屏幕上减小圆角 */
   }
   
   .main-content {
@@ -543,7 +544,7 @@ a:hover {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
-    padding: 1rem;
+    padding: 1rem; /* 小屏幕上保持适当的内边距 */
   }
   
   .post-card {
@@ -555,16 +556,16 @@ a:hover {
   }
   
   .blog-content {
-    border-radius: 10px;
+    border-radius: 10px; /* 小屏幕上减小圆角 */
     padding: 1.5rem;
   }
   
   .blog-content::before {
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px 0 0 10px; /* 匹配小屏幕圆角 */
   }
   
   body {
-    padding-bottom: 80px;
+    padding-bottom: 80px; /* 小屏幕上为页脚留出空间 */
   }
   
   .logo-img {
@@ -600,6 +601,8 @@ a:hover {
   margin: 1rem 0;
   border: 1px solid #ffcccc;
 }
+
+
 
 
 

@@ -19,7 +19,6 @@ body {
   flex-direction: column;
   background: #f9f9f9;
   color: #333;
-  padding-bottom: 60px; /* 为底部导航栏留出空间 */
 }
 
 /* 颜色变量 */
@@ -38,8 +37,8 @@ body {
   --shadow-hover: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* 顶部导航栏 - 黑底白字 */
-.top-navbar {
+/* 导航栏 - 黑底白字 */
+.navbar {
   background: var(--primary);
   color: #fff;
   padding: 1rem 2rem;
@@ -54,7 +53,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.top-navbar:hover {
+.navbar:hover {
   background: var(--primary-dark);
 }
 
@@ -66,11 +65,12 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   transition: transform 0.3s ease;
-  padding: 0;
+  padding: 0; /* 移除内边距 */
 }
 
 .logo-link:hover {
   transform: scale(1.03);
+  background: none; /* 移除背景 */
 }
 
 .logo-img {
@@ -83,45 +83,26 @@ body {
   transform: rotate(2deg);
 }
 
-/* 底部导航栏 */
-.bottom-navbar {
-  background: var(--primary);
-  color: #fff;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  z-index: 1000;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-}
-
-.bottom-nav-links {
+.nav-links {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.bottom-nav-links a {
+.nav-links a {
   color: #fff;
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0.2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.9rem;
+  padding: 0; /* 移除内边距 */
 }
 
-.bottom-nav-links a:hover {
+.nav-links a:hover {
+  background: none; /* 移除背景 */
   opacity: 0.8;
 }
 
-.bottom-nav-links a::after {
+.nav-links a::after {
   content: '';
   position: absolute;
   width: 0;
@@ -132,17 +113,12 @@ body {
   transition: width 0.3s ease;
 }
 
-.bottom-nav-links a:hover::after {
+.nav-links a:hover::after {
   width: 100%;
 }
 
-.bottom-nav-links .active {
+.nav-links .active {
   font-weight: bold;
-}
-
-.bottom-nav-icon {
-  margin-bottom: 0.3rem;
-  font-size: 1.2rem;
 }
 
 /* 主体内容 */
@@ -396,7 +372,7 @@ body {
   box-shadow: none;
 }
 
-/* 页脚 */
+/* 页脚 - 黑底白字 */
 .footer {
   background: var(--primary);
   color: #fff;
@@ -404,7 +380,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4rem; /* 为底部导航栏留出空间 */
 }
 
 .social-links {
@@ -443,13 +418,15 @@ a:hover {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .top-navbar {
+  .navbar {
     flex-direction: column;
     padding: 1rem;
   }
   
-  .bottom-nav-links {
-    gap: 1.5rem;
+  .nav-links {
+    margin-top: 1rem;
+    gap: 1rem;
+    font-size: 0.9rem;
   }
   
   .content {

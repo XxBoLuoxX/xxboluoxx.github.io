@@ -605,34 +605,29 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 1.5rem 0;
 }
 
 .image-container a {
-  width: 23%;
+  width: 25%; /* 恢复为 25% 宽度 */
   perspective: 1000px;
   overflow: hidden;
   border-radius: 8px;
-  position: relative;
-  height: 120px;
+  transition: transform 0.3s ease;
 }
 
 .image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+  height: auto; /* 自动高度，保持原始比例 */
   object-fit: contain;
-  object-position: center;
   border-radius: 8px;
   border: none;
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
 }
 
-/* 旋转动画定义 - 加快速度 */
+/* 旋转动画定义 */
 @keyframes continuous-flip {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(360deg); }
@@ -640,7 +635,7 @@ a:hover {
 
 /* 鼠标交互控制 */
 .image-container a img {
-  animation: continuous-flip 1.2s linear paused; /* 加快到 1.2 秒 */
+  animation: continuous-flip 1.2s linear paused; /* 快速旋转 */
 }
 
 .image-container a:hover img {
@@ -659,7 +654,6 @@ a:hover {
   }
   
   .image-container a {
-    width: 48%;
-    height: 100px;
+    width: 48%; /* 小屏幕每行显示2个 */
   }
 }

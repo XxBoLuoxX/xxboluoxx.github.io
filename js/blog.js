@@ -143,18 +143,16 @@ function renderPosts(posts, containerId) {
 
     posts.forEach(post => {
         const postCard = document.createElement('article');
-        postCard.className = 'bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all hover:shadow-lg w-full';
+        postCard.className = 'post-card';
         
         postCard.innerHTML = `
-            <div class="p-6">
-                <h2 class="text-xl font-bold mb-2 text-gray-800">
-                    <a href="${post.url}" class="hover:text-primary">${post.title}</a>
-                </h2>
-                <div class="flex items-center text-sm text-gray-500 mb-4">
-                    <span class="mr-4"><i class="fas fa-calendar-alt mr-1"></i> ${post.date}</span>
-                    <span><i class="fas fa-tags mr-1"></i> ${post.tags.join(', ') || '无标签'}</span>
-                </div>
-                <p class="text-gray-600 mb-4">${post.excerpt}</p>
+            <h2 class="text-xl font-bold mb-2">
+                <a href="${post.url}" class="hover:text-primary">${post.title}</a>
+            </h2>
+            <p class="text-gray-600 mb-4">${post.excerpt}</p>
+            <div class="post-meta">
+                <span><i class="fas fa-calendar-alt mr-1"></i> ${post.date}</span>
+                <span><i class="fas fa-tags mr-1"></i> ${post.tags.join(', ') || '无标签'}</span>
             </div>
         `;
         
@@ -181,12 +179,12 @@ function renderCategories() {
         .map(([tag, count]) => ({ tag, count }));
 
     const tagCloud = document.createElement('div');
-    tagCloud.className = 'flex flex-wrap gap-2 mb-6';
+    tagCloud.className = 'tag-cloud';
 
     sortedTags.forEach(({ tag, count }) => {
         const tagElement = document.createElement('a');
         tagElement.href = `javascript:void(0)`;
-        tagElement.className = 'px-3 py-1 bg-gray-100 hover:bg-primary hover:text-white rounded-full text-sm transition-colors';
+        tagElement.className = 'tag';
         tagElement.textContent = `${tag} (${count})`;
         tagElement.addEventListener('click', () => filterPostsByTag(tag));
         tagCloud.appendChild(tagElement);

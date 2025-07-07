@@ -609,25 +609,21 @@ a:hover {
 }
 
 .image-container a {
-  width: 25%; /* 设置每个链接宽度为 25% */
-  transition: transform 0.3s ease;
-}
-
-.image-container a:hover {
-  transform: translateY(-3px);
+  width: 25%; /* 保持每张图片宽度为 25% */
+  perspective: 1000px; /* 为 3D 变换创建透视效果 */
 }
 
 .image-container img {
-  width: 100%; /* 图片填充父容器 */
+  width: 100%;
   height: auto;
-  border-radius: 8px; /* 保留圆角 */
-  box-shadow: none; /* 移除阴影 */
+  border-radius: 8px;
   border: none; /* 确保无边框 */
-  transition: all 0.3s ease;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d; /* 启用 3D 变换 */
 }
 
-.image-container img:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 悬停时添加轻微阴影 */
+.image-container a:hover img {
+  transform: rotateY(180deg); /* 悬停时水平翻转 180 度 */
 }
 
 /* 响应式调整 */

@@ -143,7 +143,7 @@ function renderPosts(posts, containerId) {
 
     posts.forEach(post => {
         const postCard = document.createElement('article');
-        postCard.className = 'post-card cursor-pointer';
+        postCard.className = 'post-card cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary';
         postCard.dataset.href = post.url;
         
         // 添加点击事件
@@ -151,8 +151,16 @@ function renderPosts(posts, containerId) {
             window.location.href = post.url;
         });
         
+        // 添加键盘导航支持
+        postCard.tabIndex = 0;
+        postCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.location.href = post.url;
+            }
+        });
+        
         postCard.innerHTML = `
-            <h2 class="text-xl font-bold mb-2">
+            <h2 class="text-xl font-bold mb-2 transition-colors duration-300 hover:text-primary">
                 ${post.title}
             </h2>
             <p class="text-gray-600 mb-4">${post.excerpt}</p>
@@ -190,13 +198,11 @@ function renderCategories() {
     sortedTags.forEach(({ tag, count }) => {
         const tagElement = document.createElement('a');
         tagElement.href = `javascript:void(0)`;
-        tagElement.className = 'tag';
+        tagElement.className = 'tag transition-all duration-300 hover:bg-primary-dark hover:scale-105';
         tagElement.textContent = `${tag} (${count})`;
         tagElement.addEventListener('click', () => filterPostsByTag(tag));
-        tagCloud.appendChild(tagElement);
+        container.appendChild(tagElement);
     });
-
-    container.appendChild(tagCloud);
 }
 
 // 根据标签过滤文章

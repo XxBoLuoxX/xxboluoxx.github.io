@@ -41,25 +41,29 @@ document.querySelectorAll('.image-container a').forEach(link => {
   let rotation = 0;         // 当前旋转角度
   let isRotating = false;   // 是否正在旋转
   let isRestoring = false;  // 是否正在恢复
-  let rotationSpeed = 2;    // 旋转速度（每帧度数）
+  const ROTATION_SPEED = 3; // 旋转速度（每帧度数）
   
   // 旋转动画函数
   function animateRotation() {
     if (!isRotating && !isRestoring) return;
     
-    rotation += rotationSpeed;  // 沿原方向继续旋转
-    if (rotation >= 360) rotation -= 360;
+    rotation += ROTATION_SPEED;  // 保持速度一致
+    
+    // 处理角度超出360度的情况
+    if (rotation >= 360) {
+      if (isRestoring) {
+        // 恢复阶段：当旋转超过360度时，计算超出的角度并回到0度
+        rotation = rotation % 360;
+        isRestoring = false;
+      } else {
+        // 正常旋转：直接减去360度
+        rotation -= 360;
+      }
+    }
     
     img.style.transform = `rotateY(${rotation}deg)`;
     
-    // 如果是恢复阶段，检查是否完成一圈
-    if (isRestoring && rotation <= 0) {
-      rotation = 0;
-      img.style.transform = `rotateY(0deg)`;
-      isRestoring = false;
-      return;
-    }
-    
+    // 继续动画循环
     requestAnimationFrame(animateRotation);
   }
   
@@ -81,7 +85,6 @@ document.querySelectorAll('.image-container a').forEach(link => {
     
     // 如果当前角度不是0，继续旋转直到完成一圈
     if (rotation > 0) {
-      rotationSpeed = 2; // 恢复速度（可调整）
       animateRotation();
     } else {
       // 已经是0度，直接完成恢复

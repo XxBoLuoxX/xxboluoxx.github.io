@@ -598,11 +598,6 @@ a:hover {
   border: 1px solid #ffcccc;
 }
 
-
-
-
-
-
 /* 并排图片容器 */
 .image-container {
   display: flex;
@@ -658,4 +653,104 @@ a:hover {
 .blog-content .image-container img:hover {
   box-shadow: none;
   transform: none;
+}
+
+
+
+
+
+
+
+/* 博客推荐区域 - 极简风格 */
+.blog-recommend-section {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: var(--shadow-light) inset;
+}
+
+.recommend-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.recommend-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.recommend-card {
+  width: 320px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  padding: 1.8rem;
+  overflow: hidden;
+}
+
+.recommend-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(0,0,0,0.1);
+}
+
+.recommend-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.recommend-card:hover::before {
+  transform: scaleX(1);
+}
+
+.recommend-card:hover .recommend-card-title,
+.recommend-card:hover .recommend-card-excerpt {
+  color: white;
+}
+
+.recommend-card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.recommend-card-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .recommend-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .recommend-card {
+    width: 100%;
+    max-width: 400px;
+  }
 }

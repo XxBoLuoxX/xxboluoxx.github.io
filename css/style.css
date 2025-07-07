@@ -5,6 +5,14 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Umeboshi'; /* 新增字体 */
+    src: url('../font/umeboshi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -473,6 +481,7 @@ body {
 
 
 .random-text {
+  font-family: 'Umeboshi', sans-serif; /* 使用新字体 */
   font-style: italic;
   font-size: 1rem; /* 恢复文字大小 */
 }

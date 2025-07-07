@@ -620,6 +620,20 @@ a:hover {
   transition: transform 0.3s ease;
 }
 
+/* 图片包装器 - 处理缩放效果 */
+.image-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.image-container a:hover .image-wrapper {
+  transform: scale(1.05); /* 悬停时放大包装器 */
+}
+
+.image-container a:not(:hover) .image-wrapper {
+  transition-delay: 0.75s; /* 延迟缩小，等待旋转完成 */
+}
+
+/* 图片 - 处理旋转效果 */
 .image-container img {
   width: 100%;
   height: auto;
@@ -627,16 +641,6 @@ a:hover {
   border-radius: 8px;
   border: none;
   transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-/* 悬停放大效果 */
-.image-container a:hover {
-  transform: scale(1.05);
-}
-
-.image-container a:not(:hover) {
-  transition-delay: 0.75s; /* 延迟缩小，等待旋转完成 */
 }
 
 /* 旋转动画 - 完整一圈(360°) */

@@ -24,10 +24,12 @@ body {
 /* 颜色变量 */
 :root {
   --primary: #000;
-  --primary-dark: #333;
-  --hover-bg: #f5f5f5;
+  --primary-light: #333;
+  --secondary: #f5f5f5;
   --text-color: #333;
   --text-light: #666;
+  --border-color: #eee;
+  --active-bg: #f0f0f0;
 }
 
 /* 导航栏 - 黑底白字 */
@@ -43,11 +45,6 @@ body {
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-}
-
-.navbar:hover {
-  background: var(--primary-dark);
 }
 
 .logo-link {
@@ -57,21 +54,11 @@ body {
   color: #fff;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.logo-link:hover {
-  transform: scale(1.03);
 }
 
 .logo-img {
   height: 40px;
   margin-right: 10px;
-  transition: transform 0.3s ease;
-}
-
-.logo-link:hover .logo-img {
-  transform: rotate(2deg);
 }
 
 .nav-links {
@@ -83,28 +70,12 @@ body {
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   position: relative;
-  padding-bottom: 3px;
 }
 
 .nav-links a:hover {
   opacity: 0.8;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
 }
 
 .nav-links .active {
@@ -124,19 +95,8 @@ body {
 .page-title {
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #eee;
-  position: relative;
+  border-bottom: 2px solid var(--border-color);
   color: var(--text-color);
-}
-
-.page-title::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100px;
-  height: 2px;
-  background: var(--primary);
 }
 
 /* 文章卡片 */
@@ -146,43 +106,21 @@ body {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  border: 1px solid #eee;
-  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s;
   position: relative;
   cursor: pointer;
-  overflow: visible; /* 修复可能的文本覆盖问题 */
 }
 
 .post-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  border-color: var(--primary);
-}
-
-.post-card::before {
-  content: '';
-  position: absolute;
-  top: -3px; /* 调整位置，避免覆盖内容 */
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--primary);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  z-index: 1; /* 确保在内容下方 */
-}
-
-.post-card:hover::before {
-  transform: scaleX(1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-color: rgba(0,0,0,0.2);
 }
 
 .post-card h2 {
   color: var(--text-color);
-  transition: color 0.3s ease;
-}
-
-.post-card:hover h2 {
-  color: var(--primary);
+  margin-bottom: 0.5rem;
 }
 
 .post-meta {
@@ -193,61 +131,39 @@ body {
   font-size: 0.9rem;
 }
 
-/* 分类标签 */
-.tag-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+/* 分类筛选器 */
+.filter-container {
   margin: 2rem 0;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
 }
 
-.tag {
-  padding: 0.5rem 1rem;
-  background: var(--primary);
-  color: #fff;
+.filter-tags {
+  display: flex;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+.filter-tag {
+  padding: 0.5rem 1.2rem;
+  background: var(--secondary);
+  color: var(--text-color);
   border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1; /* 确保文本可见 */
+  transition: all 0.3s;
+  border: 1px solid var(--border-color);
 }
 
-.tag:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.filter-tag:hover {
+  background: var(--active-bg);
+  border-color: rgba(0,0,0,0.2);
 }
 
-.tag::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  border-radius: 100%;
-  transform: scale(1, 1) translate(-50%);
-  transform-origin: 50% 50%;
-  z-index: -1; /* 确保在文本下方 */
-}
-
-.tag:active::after {
-  animation: ripple 0.6s ease-out;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(20, 20);
-    opacity: 0;
-  }
+.filter-tag.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
 }
 
 /* 搜索框 */
@@ -260,16 +176,15 @@ body {
 #search-input {
   flex: 1;
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
-  transition: all 0.3s ease;
   color: var(--text-color);
 }
 
 #search-input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
 }
 
 #search-btn {
@@ -279,18 +194,11 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
 #search-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#search-btn:active {
-  transform: translateY(0);
-  box-shadow: none;
+  background: var(--primary-light);
 }
 
 /* 页脚 - 黑底白字 */
@@ -311,11 +219,11 @@ body {
 .social-icon img {
   height: 24px;
   filter: invert(1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
 }
 
 .social-icon:hover img {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .random-text {
@@ -324,14 +232,12 @@ body {
 
 /* 设置超链接颜色 */
 a {
-  color: var(--primary);
+  color: var(--text-color);
   text-decoration: none;
-  transition: all 0.3s ease;
 }
 
 a:hover {
   text-decoration: underline;
-  color: var(--primary-dark);
 }
 
 /* 响应式设计 */

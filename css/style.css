@@ -609,21 +609,26 @@ a:hover {
 }
 
 .image-container a {
-  width: 25%; /* 保持每张图片宽度为 25% */
-  perspective: 1000px; /* 为 3D 变换创建透视效果 */
+  width: 25%;
+  perspective: 1000px;
 }
 
 .image-container img {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  border: none; /* 确保无边框 */
-  transition: transform 0.5s ease;
-  transform-style: preserve-3d; /* 启用 3D 变换 */
+  border: none;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
 }
 
 .image-container a:hover img {
-  transform: rotateY(180deg); /* 悬停时水平翻转 180 度 */
+  animation: continuous-flip 2s linear infinite; /* 添加无限旋转动画 */
+}
+
+@keyframes continuous-flip {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
 }
 
 /* 响应式调整 */
@@ -633,7 +638,7 @@ a:hover {
   }
   
   .image-container a {
-    width: 48%; /* 在小屏幕上每行显示2个图片 */
+    width: 48%;
     margin-bottom: 1rem;
   }
 }

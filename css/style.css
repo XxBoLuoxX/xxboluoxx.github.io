@@ -597,3 +597,47 @@ a:hover {
   margin: 1rem 0;
   border: 1px solid #ffcccc;
 }
+
+/* 并排图片容器 */
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* 图片之间的间距 */
+  margin: 1.5rem 0;
+}
+
+.image-container a {
+  flex: 1; /* 平均分配宽度 */
+  transition: transform 0.3s ease;
+}
+
+.image-container a:hover {
+  transform: translateY(-5px);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 150px; /* 限制最大高度 */
+  object-fit: contain; /* 保持图片比例 */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.image-container img:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .image-container img {
+    max-height: none;
+  }
+}

@@ -484,6 +484,7 @@ body {
   font-family: 'CEFFontsCJK', sans-serif; /* 使用新字体 */
   font-style: italic;
   font-size: 1rem; /* 恢复文字大小 */
+  font-weight: bold; /* 添加加粗效果 */
 }
 
 

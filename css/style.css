@@ -617,7 +617,7 @@ a:hover {
 }
 
 .image-container img {
-  width: 100%;
+  width: 25%;
   height: auto;
   max-height: 150px; /* 限制最大高度 */
   object-fit: contain; /* 保持图片比例 */

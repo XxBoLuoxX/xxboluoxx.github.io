@@ -629,7 +629,7 @@ a:hover {
 }
 
 .image-container a:hover .image-wrapper {
-  transform: scale(1.4); /* 显著放大效果 */
+  transform: scale(2); /* 显著放大效果 */
 }
 
 .image-container a:not(:hover) .image-wrapper {

@@ -625,6 +625,11 @@ a:hover {
   transition: transform 0.3s ease;
 }
 
+/* 移除 a 标签的直接缩放，只通过 wrapper 缩放 */
+.image-container a:hover {
+  transform: none;
+}
+
 .image-container a:hover .image-wrapper {
   transform: scale(1.05); /* 悬停时放大包装器 */
 }
@@ -673,4 +678,10 @@ a:hover {
   .image-container a {
     width: 48%;
   }
+}
+
+/* 避免与其他图片样式冲突 */
+.blog-content .image-container img:hover {
+  box-shadow: none; /* 移除其他地方定义的阴影 */
+  transform: none;  /* 移除其他地方定义的缩放 */
 }

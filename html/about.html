@@ -36,20 +36,43 @@
   <script src="/js/blog.js"></script>
   <script>
     // 图片旋转控制脚本
-    document.querySelectorAll('.image-container img').forEach(img => {
-      img.addEventListener('mouseleave', () => {
-        // 获取当前旋转角度
-        const matrix = window.getComputedStyle(img).getPropertyValue('transform');
-        const matrix3d = new DOMMatrix(matrix);
-        const angle = Math.round(Math.atan2(matrix3d.b, matrix3d.a) * (180 / Math.PI));
-        
-        // 确保角度在0-360之间
-        const normalizedAngle = ((angle % 360) + 360) % 360;
-        
-        // 更新CSS变量
-        img.style.setProperty('--rotation', normalizedAngle);
-      });
-    });
+document.querySelectorAll('.image-container a').forEach(link => {
+  const img = link.querySelector('img');
+  let isRestoring = false;
+
+  // 鼠标移出时记录角度并开始恢复
+  link.addEventListener('mouseleave', () => {
+    if (isRestoring) return; // 避免重复触发
+    
+    // 获取当前旋转角度
+    const matrix = window.getComputedStyle(img).getPropertyValue('transform');
+    const matrix3d = new DOMMatrix(matrix);
+    const angle = Math.round(Math.atan2(matrix3d.b, matrix3d.a) * (180 / Math.PI));
+    const normalizedAngle = ((angle % 360) + 360) % 360;
+    
+    // 更新CSS变量
+    img.style.setProperty('--rotation', normalizedAngle);
+    
+    // 标记为恢复中
+    isRestoring = true;
+    img.classList.add('restoring');
+    
+    // 恢复完成后重置状态
+    setTimeout(() => {
+      isRestoring = false;
+      img.classList.remove('restoring');
+      img.style.setProperty('--rotation', 0); // 重置为0
+    }, 750); // 与rotate-back动画持续时间匹配
+  });
+
+  // 鼠标移入时处理恢复中的特殊情况
+  link.addEventListener('mouseenter', () => {
+    // 如果正在恢复中，允许缩放但不启动新的旋转
+    if (isRestoring) {
+      img.style.animationPlayState = 'paused';
+    }
+  });
+});
   </script>
 </body>
 </html>

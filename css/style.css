@@ -671,13 +671,8 @@ a:hover {
 }
 
 /* 防止恢复过程中触发新动画 */
-.image-container a:not(:hover) img {
+.image-container a:not(:hover) img.restoring {
   pointer-events: none; /* 恢复过程中忽略鼠标事件 */
-}
-
-/* 使用JavaScript更新当前旋转角度 */
-.image-container a img {
-  counter-reset: rotation 0;
 }
 
 /* 响应式调整 */

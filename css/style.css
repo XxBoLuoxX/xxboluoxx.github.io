@@ -479,10 +479,21 @@ a {
   border-radius: 3px;
 }
 
-
 a:hover {
-  background: var(--link-bg);
+  /* 移除背景色变化 */
+  /* background: var(--link-bg); */
   transform: scale(var(--hover-scale));
+}
+
+/* 页脚链接单独设置 */
+.footer a {
+  color: #fff;
+  padding: 0; /* 移除内边距 */
+}
+
+.footer a:hover {
+  background: none; /* 确保无背景 */
+  transform: scale(1.1); /* 单独设置页脚链接的放大比例 */
 }
 
 

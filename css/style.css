@@ -54,7 +54,7 @@ body {
 .navbar {
   background: var(--primary);
   color: #fff;
-  padding: 1rem 2rem; /* 保持原有内边距 */
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,27 +78,27 @@ body {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 1.2rem; /* 保持原有字体大小 */
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
   padding: 0; /* 移除内边距 */
 }
 
 
 .logo-link:hover {
-  transform: scale(1.03); /* 保持原有缩放比例 */
+  transform: scale(1.03);
   background: none; /* 移除背景 */
 }
 
 
 .logo-img {
-  height: 65px; /* 增大logo图片尺寸 */
+  height: 40px;
   margin-right: 10px;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更流畅的动画曲线 */
+  transition: transform 0.3s ease;
 }
 
 
 .logo-link:hover .logo-img {
-  transform: rotate(3deg) scale(1.05); /* 增大旋转角度并增加缩放 */
+  transform: rotate(2deg);
 }
 
 
@@ -567,10 +567,6 @@ a:hover {
   body {
     padding-bottom: 80px; /* 小屏幕上为页脚留出空间 */
   }
-  
-  .logo-img {
-    height: 50px; /* 在小屏幕上适当减小logo尺寸 */
-  }
 }
 
 
@@ -601,9 +597,6 @@ a:hover {
   margin: 1rem 0;
   border: 1px solid #ffcccc;
 }
-
-
-
 
 
 

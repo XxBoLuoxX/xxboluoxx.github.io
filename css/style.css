@@ -30,6 +30,7 @@ body {
   --text-light: #666;
   --border-color: #eee;
   --active-bg: #f0f0f0;
+  --hover-scale: 1.02;
 }
 
 /* 导航栏 - 黑底白字 */
@@ -54,6 +55,11 @@ body {
   color: #fff;
   font-weight: bold;
   font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+  transform: scale(var(--hover-scale));
 }
 
 .logo-img {
@@ -70,12 +76,12 @@ body {
 .nav-links a {
   color: #fff;
   text-decoration: none;
-  transition: all 0.3s;
-  position: relative;
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
 
 .nav-links a:hover {
-  opacity: 0.8;
+  transform: scale(var(--hover-scale));
 }
 
 .nav-links .active {
@@ -107,13 +113,13 @@ body {
   margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   border: 1px solid var(--border-color);
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
 }
 
 .post-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(var(--hover-scale));
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   border-color: rgba(0,0,0,0.2);
 }
@@ -121,6 +127,11 @@ body {
 .post-card h2 {
   color: var(--text-color);
   margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover h2 {
+  transform: scale(var(--hover-scale));
 }
 
 .post-meta {
@@ -151,11 +162,12 @@ body {
   border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   border: 1px solid var(--border-color);
 }
 
 .filter-tag:hover {
+  transform: scale(var(--hover-scale));
   background: var(--active-bg);
   border-color: rgba(0,0,0,0.2);
 }
@@ -164,6 +176,7 @@ body {
   background: var(--primary);
   color: white;
   border-color: var(--primary);
+  transform: scale(var(--hover-scale));
 }
 
 /* 搜索框 */
@@ -179,12 +192,14 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   color: var(--text-color);
+  transition: all 0.3s ease;
 }
 
 #search-input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+  transform: scale(1.01);
 }
 
 #search-btn {
@@ -194,10 +209,11 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 #search-btn:hover {
+  transform: scale(var(--hover-scale));
   background: var(--primary-light);
 }
 
@@ -219,7 +235,7 @@ body {
 .social-icon img {
   height: 24px;
   filter: invert(1);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .social-icon:hover img {
@@ -234,10 +250,13 @@ body {
 a {
   color: var(--text-color);
   text-decoration: none;
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
 
 a:hover {
   text-decoration: underline;
+  transform: scale(var(--hover-scale));
 }
 
 /* 响应式设计 */
@@ -266,6 +285,10 @@ a:hover {
   
   .post-card {
     padding: 1rem;
+  }
+  
+  :root {
+    --hover-scale: 1.01; /* 在小屏幕上减小缩放比例 */
   }
 }
 

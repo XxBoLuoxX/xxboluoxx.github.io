@@ -143,11 +143,17 @@ function renderPosts(posts, containerId) {
 
     posts.forEach(post => {
         const postCard = document.createElement('article');
-        postCard.className = 'post-card';
+        postCard.className = 'post-card cursor-pointer';
+        postCard.dataset.href = post.url;
+        
+        // 添加点击事件
+        postCard.addEventListener('click', () => {
+            window.location.href = post.url;
+        });
         
         postCard.innerHTML = `
             <h2 class="text-xl font-bold mb-2">
-                <a href="${post.url}" class="hover:text-primary">${post.title}</a>
+                ${post.title}
             </h2>
             <p class="text-gray-600 mb-4">${post.excerpt}</p>
             <div class="post-meta">

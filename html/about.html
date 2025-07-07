@@ -38,38 +38,54 @@
     // 图片旋转控制脚本
 document.querySelectorAll('.image-container a').forEach(link => {
   const img = link.querySelector('img');
-  let isRestoring = false;
-
-  // 鼠标移出时记录角度并开始恢复
-  link.addEventListener('mouseleave', () => {
-    if (isRestoring) return; // 避免重复触发
+  let rotation = 0;         // 当前旋转角度
+  let isRotating = false;   // 是否正在旋转
+  let isRestoring = false;  // 是否正在恢复
+  let rotationSpeed = 2;    // 旋转速度（每帧度数）
+  
+  // 旋转动画函数
+  function animateRotation() {
+    if (!isRotating && !isRestoring) return;
     
-    // 获取当前旋转角度
-    const matrix = window.getComputedStyle(img).getPropertyValue('transform');
-    const matrix3d = new DOMMatrix(matrix);
-    const angle = Math.round(Math.atan2(matrix3d.b, matrix3d.a) * (180 / Math.PI));
-    const normalizedAngle = ((angle % 360) + 360) % 360;
+    rotation += rotationSpeed;  // 沿原方向继续旋转
+    if (rotation >= 360) rotation -= 360;
     
-    // 更新CSS变量
-    img.style.setProperty('--rotation', normalizedAngle);
+    img.style.transform = `rotateY(${rotation}deg)`;
     
-    // 标记为恢复中
-    isRestoring = true;
-    img.classList.add('restoring');
-    
-    // 恢复完成后重置状态
-    setTimeout(() => {
+    // 如果是恢复阶段，检查是否完成一圈
+    if (isRestoring && rotation <= 0) {
+      rotation = 0;
+      img.style.transform = `rotateY(0deg)`;
       isRestoring = false;
-      img.classList.remove('restoring');
-      img.style.setProperty('--rotation', 0); // 重置为0
-    }, 750); // 与rotate-back动画持续时间匹配
-  });
-
-  // 鼠标移入时处理恢复中的特殊情况
+      return;
+    }
+    
+    requestAnimationFrame(animateRotation);
+  }
+  
+  // 鼠标移入事件
   link.addEventListener('mouseenter', () => {
-    // 如果正在恢复中，允许缩放但不启动新的旋转
-    if (isRestoring) {
-      img.style.animationPlayState = 'paused';
+    // 只在完全恢复后开始新的旋转
+    if (!isRestoring) {
+      isRotating = true;
+      animateRotation();
+    }
+  });
+  
+  // 鼠标移出事件
+  link.addEventListener('mouseleave', () => {
+    if (!isRotating) return;
+    
+    isRotating = false;
+    isRestoring = true;
+    
+    // 如果当前角度不是0，继续旋转直到完成一圈
+    if (rotation > 0) {
+      rotationSpeed = 2; // 恢复速度（可调整）
+      animateRotation();
+    } else {
+      // 已经是0度，直接完成恢复
+      isRestoring = false;
     }
   });
 });

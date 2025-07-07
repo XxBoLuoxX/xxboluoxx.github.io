@@ -155,9 +155,6 @@ function renderPosts(posts, containerId) {
                     <span><i class="fas fa-tags mr-1"></i> ${post.tags.join(', ') || '无标签'}</span>
                 </div>
                 <p class="text-gray-600 mb-4">${post.excerpt}</p>
-                <a href="${post.url}" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors">
-                    阅读更多
-                </a>
             </div>
         `;
         

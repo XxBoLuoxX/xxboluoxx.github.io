@@ -345,9 +345,8 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  white-space: normal; /* 允许文本换行 */
-  word-break: keep-all; /* 保持单词完整性，不强制拆分 */
-  min-width: fit-content; /* 最小宽度为内容宽度 */
+  white-space: nowrap; /* 禁止标签内文本换行 */
+  flex-shrink: 0; /* 防止标签被压缩 */
 }
 
 .tag:hover {

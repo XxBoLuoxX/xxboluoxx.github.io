@@ -53,7 +53,7 @@
 }
 
 body {
-    font-family: 'Arial', 'CEFFontsCJK', sans-serif;
+    font-family: 'Arial', sans-serif; /* 恢复默认字体 */
     line-height: 1.8;
     min-height: 100vh;
     display: flex;
@@ -92,6 +92,7 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
     transition: var(--transition);
+    font-family: 'JingNanBold', sans-serif; /* 使用自定义字体 */
 }
 
 .logo-link:hover {
@@ -479,7 +480,7 @@ body {
 }
 
 .random-text {
-    font-family: 'CEFFontsCJK', sans-serif;
+    font-family: 'CEFFontsCJK', sans-serif; /* 使用自定义字体 */
     font-style: italic;
     font-size: 0.9rem;
     font-weight: bold;

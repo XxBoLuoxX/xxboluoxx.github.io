@@ -744,6 +744,7 @@ a:hover {
 
   /* 分类标签 - 手机端 */
   .tag-cloud {
+	flex-wrap: wrap; /* 允许标签换行 */
     gap: 0.5rem; /* 手机端标签间距减小 */
   }
 

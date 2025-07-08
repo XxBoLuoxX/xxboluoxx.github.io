@@ -335,27 +335,20 @@ body {
 }
 
 
-/* 分类标签 - 通用样式（PC/手机共用基础样式，差异在hover） */
-.tag-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem; /* PC端间距 */
-  margin: 2rem 0;
-}
-
-
 .tag {
   padding: 0.5rem 1rem;
   background: var(--primary);
   color: #fff;
   border-radius: 20px;
-  font-size: 0.9rem; /* PC端字体大小 */
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  white-space: normal; /* 允许文本换行 */
+  word-break: keep-all; /* 保持单词完整性，不强制拆分 */
+  min-width: fit-content; /* 最小宽度为内容宽度 */
 }
-
 
 .tag:hover {
   background: var(--primary-dark);

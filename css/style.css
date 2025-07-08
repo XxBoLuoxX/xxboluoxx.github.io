@@ -1,4 +1,4 @@
-/* 基础重置 */
+/* 基础重置与通用设置 */
 @font-face {
     font-family: 'JingNanBold'; /* 自定义字体名称 */
     src: url('../font/jingnanbold.ttf') format('truetype');
@@ -28,12 +28,12 @@ body {
   flex-direction: column;
   background: #f9f9f9;
   color: #333;
-  padding-bottom: 60px; /* 为固定的页脚留出空间 */
+  padding-bottom: 60px; /* 为固定的页脚留出空间（PC端） */
   position: relative; /* 确保页脚相对于body定位 */
 }
 
 
-/* 颜色变量 */
+/* 颜色变量（通用） */
 :root {
   --primary: #000;
   --primary-dark: #333;
@@ -41,7 +41,7 @@ body {
   --text-color: #333;
   --text-light: #666;
   --border-color: #eee;
-  --hover-scale: 1.02;
+  --hover-scale: 1.02; /* PC端hover放大比例 */
   --link-bg: #f0f0f0;
   --card-bg: #fff;
   --shadow-light: 0 2px 5px rgba(0,0,0,0.05);
@@ -50,14 +50,14 @@ body {
 }
 
 
-/* 导航栏 - 黑底白字 */
+/* 导航栏 - PC端（黑底白字，水平布局） */
 .navbar {
   background: var(--primary);
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem; /* PC端较大内边距 */
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* 水平居中对齐 */
   position: fixed;
   width: 100%;
   top: 0;
@@ -77,21 +77,22 @@ body {
   align-items: center;
   text-decoration: none;
   color: #fff;
+  font-family: 'CEFFontsCJK', sans-serif; /* 使用CEFFontsCJK字体 */
   font-weight: bold;
   font-size: 1.2rem;
   transition: transform 0.3s ease;
-  padding: 0; /* 移除内边距 */
+  padding: 0;
 }
 
 
 .logo-link:hover {
   transform: scale(1.03);
-  background: none; /* 移除背景 */
+  background: none;
 }
 
 
 .logo-img {
-  height: 40px;
+  height: 40px; /* PC端logo高度 */
   margin-right: 10px;
   transition: transform 0.3s ease;
 }
@@ -105,7 +106,7 @@ body {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 1.5rem; /* PC端链接间距 */
 }
 
 
@@ -114,12 +115,12 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
-  padding: 0; /* 移除内边距 */
+  padding: 0;
 }
 
 
 .nav-links a:hover {
-  background: none; /* 移除背景 */
+  background: none;
   opacity: 0.8;
 }
 
@@ -146,28 +147,28 @@ body {
 }
 
 
-/* 主体内容 */
+/* 主体内容 - PC端 */
 .content {
   flex: 1;
   width: 100%;
-  max-width: 1200px;
-  margin: 6rem auto 2rem;
+  max-width: 1200px; /* PC端最大宽度 */
+  margin: 6rem auto 2rem; /* PC端顶部间距 */
   padding: 0 1.5rem;
-  border-radius: 15px; /* 添加圆角 */
-  background: var(--card-bg); /* 添加背景色 */
-  box-shadow: var(--shadow-light); /* 添加阴影 */
-  transition: all 0.3s ease; /* 添加过渡效果 */
+  border-radius: 15px; /* PC端较大圆角 */
+  background: var(--card-bg);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
 }
 
 .content:hover {
-  box-shadow: var(--shadow-medium); /* 悬停时阴影加深 */
+  box-shadow: var(--shadow-medium);
 }
 
 
 .main-content {
   background: var(--card-bg);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 2rem; /* PC端较大内边距 */
   box-shadow: var(--shadow-light);
   transition: all 0.3s ease;
 }
@@ -181,14 +182,14 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5rem; /* PC端间距 */
 }
 
 
 .sidebar-widget {
   background: var(--card-bg);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1.5rem; /* PC端内边距 */
   box-shadow: var(--shadow-light);
   transition: all 0.3s ease;
 }
@@ -204,7 +205,7 @@ body {
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--border-color);
   color: var(--text-color);
-  font-size: 1.2rem;
+  font-size: 1.2rem; /* PC端字体大小 */
 }
 
 
@@ -213,27 +214,27 @@ body {
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--border-color);
   color: var(--text-color);
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* PC端标题大小 */
 }
 
 
-/* 博客内容 */
+/* 博客内容 - PC端 */
 .blog-content {
   line-height: 1.8;
   color: var(--text-color);
   margin-top: 2rem;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem; /* PC端内边距 */
   background: #f9f9f9;
-  border-radius: 15px; /* 增大圆角半径 */
+  border-radius: 15px; /* PC端较大圆角 */
   position: relative;
-  border: 1px solid var(--border-color); /* 添加边框 */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* 添加轻微阴影 */
-  transition: all 0.3s ease; /* 添加过渡效果 */
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+  transition: all 0.3s ease;
 }
 
 .blog-content:hover {
-  box-shadow: var(--shadow-light); /* 悬停时阴影加深 */
-  transform: translateY(-2px); /* 悬停时轻微上浮 */
+  box-shadow: var(--shadow-light);
+  transform: translateY(-2px);
 }
 
 
@@ -245,12 +246,12 @@ body {
   width: 4px;
   height: 100%;
   background: var(--primary);
-  border-radius: 15px 0 0 15px; /* 匹配博客内容的圆角 */
+  border-radius: 15px 0 0 15px; /* 匹配PC端圆角 */
 }
 
 
 .blog-content h2 {
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* PC端标题大小 */
   margin-bottom: 1rem;
   color: var(--text-color);
   border-bottom: 1px solid #eee;
@@ -284,7 +285,7 @@ body {
 .blog-content blockquote {
   background: #f0f0f0;
   border-left: 4px solid var(--primary);
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem; /* PC端内边距 */
   margin: 1.5rem 0;
   border-radius: 0 5px 5px 0;
   font-style: italic;
@@ -292,12 +293,12 @@ body {
 }
 
 
-/* 文章卡片 */
+/* 文章卡片 - PC端 */
 .post-card {
   background: var(--card-bg);
   border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem; /* PC端内边距 */
+  margin-bottom: 1.5rem; /* PC端间距 */
   box-shadow: var(--shadow-light);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
@@ -330,15 +331,15 @@ body {
   justify-content: space-between;
   margin-top: 1rem;
   color: var(--text-light);
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* PC端字体大小 */
 }
 
 
-/* 分类标签 */
+/* 分类标签 - 通用样式（PC/手机共用基础样式，差异在hover） */
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 0.8rem; /* PC端间距 */
   margin: 2rem 0;
 }
 
@@ -348,7 +349,7 @@ body {
   background: var(--primary);
   color: #fff;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* PC端字体大小 */
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -358,7 +359,7 @@ body {
 
 .tag:hover {
   background: var(--primary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* PC端hover效果 */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -396,17 +397,17 @@ body {
 }
 
 
-/* 搜索框 */
+/* 搜索框 - PC端 */
 .search-box {
   display: flex;
   margin: 2rem 0;
-  gap: 1rem;
+  gap: 1rem; /* PC端间距 */
 }
 
 
 #search-input {
   flex: 1;
-  padding: 0.8rem;
+  padding: 0.8rem; /* PC端内边距 */
   border: 1px solid var(--border-color);
   border-radius: 4px;
   color: var(--text-color);
@@ -422,7 +423,7 @@ body {
 
 
 #search-btn {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem; /* PC端按钮大小 */
   background: var(--primary);
   color: #fff;
   border: none;
@@ -434,7 +435,7 @@ body {
 
 #search-btn:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
+  transform: translateY(-1px); /* PC端hover效果 */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -445,50 +446,49 @@ body {
 }
 
 
-/* 页脚 - 黑底白字 */
+/* 页脚 - PC端（黑底白字，水平布局） */
 .footer {
   background: var(--primary);
   color: #fff;
-  padding: 0.75rem 1rem; /* 保持小内边距 */
+  padding: 0.75rem 1rem; /* PC端内边距 */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 水平分布 */
   align-items: center;
-  /* 固定在底部 */
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 999; /* 确保页脚在其他元素之上 */
+  z-index: 999;
 }
 
 
 .social-links {
   display: flex;
-  gap: 1.5rem; /* 恢复社交图标间距 */
+  gap: 1.5rem; /* PC端图标间距 */
 }
 
 
 .social-icon img {
-  height: 24px; /* 恢复社交图标大小 */
+  height: 24px; /* PC端图标大小 */
   filter: invert(1);
   transition: transform 0.3s ease;
 }
 
 
 .social-icon:hover img {
-  transform: scale(1.1);
+  transform: scale(1.1); /* PC端hover效果 */
 }
 
 
 .random-text {
-  font-family: 'CEFFontsCJK', sans-serif; /* 使用新字体 */
+  font-family: 'CEFFontsCJK', sans-serif;
   font-style: italic;
-  font-size: 1rem; /* 恢复文字大小 */
-  font-weight: bold; /* 添加加粗效果 */
+  font-size: 1rem; /* PC端字体大小 */
+  font-weight: bold;
 }
 
 
-/* 设置超链接颜色 */
+/* 超链接样式 - 通用基础样式 */
 a {
   color: var(--text-color);
   text-decoration: none;
@@ -499,78 +499,22 @@ a {
 }
 
 a:hover {
-  /* 移除背景色变化 */
-  /* background: var(--link-bg); */
-  transform: scale(var(--hover-scale));
+  transform: scale(var(--hover-scale)); /* PC端默认放大比例 */
 }
 
 /* 页脚链接单独设置 */
 .footer a {
   color: #fff;
-  padding: 0; /* 移除内边距 */
+  padding: 0;
 }
 
 .footer a:hover {
-  background: none; /* 确保无背景 */
-  transform: scale(1.1); /* 单独设置页脚链接的放大比例 */
+  background: none;
+  transform: scale(1.1); /* PC端页脚链接放大比例 */
 }
 
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .nav-links {
-    margin-top: 1rem;
-    gap: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .content {
-    grid-template-columns: 1fr;
-    margin-top: 8rem;
-    padding: 0 1rem;
-    border-radius: 10px; /* 小屏幕上减小圆角 */
-  }
-  
-  .main-content {
-    padding: 1.5rem;
-  }
-  
-  .footer {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-    padding: 1rem; /* 小屏幕上保持适当的内边距 */
-  }
-  
-  .post-card {
-    padding: 1rem;
-  }
-  
-  :root {
-    --hover-scale: 1.01;
-  }
-  
-  .blog-content {
-    border-radius: 10px; /* 小屏幕上减小圆角 */
-    padding: 1.5rem;
-  }
-  
-  .blog-content::before {
-    border-radius: 10px 0 0 10px; /* 匹配小屏幕圆角 */
-  }
-  
-  body {
-    padding-bottom: 80px; /* 小屏幕上为页脚留出空间 */
-  }
-}
-
-
-/* 加载动画 */
+/* 加载动画（通用） */
 .loading-spinner {
   border: 3px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -588,7 +532,7 @@ a:hover {
 }
 
 
-/* 错误提示 */
+/* 错误提示（通用） */
 .error-message {
   color: #ff3333;
   background: #ffe6e6;
@@ -598,36 +542,36 @@ a:hover {
   border: 1px solid #ffcccc;
 }
 
-/* 并排图片容器 */
+/* 并排图片容器 - PC端 */
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; /* PC端图片间距 */
   margin: 1.5rem 0;
 }
 
 .image-container a {
-  width: 25%;
+  width: 25%; /* PC端每张图片宽度 */
   perspective: 1000px;
   overflow: hidden;
   border-radius: 8px;
 }
 
-/* 图片包装器 - 处理缩放效果 */
+/* 图片包装器 - 处理缩放效果（通用基础样式） */
 .image-wrapper {
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* 更生动的弹性过渡 */
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .image-container a:hover .image-wrapper {
-  transform: scale(2); /* 显著放大效果 */
+  transform: scale(2); /* PC端图片hover放大效果 */
 }
 
 .image-container a:not(:hover) .image-wrapper {
-  transform: scale(1); /* 恢复时缩小 */
+  transform: scale(1);
 }
 
-/* 图片 - 处理旋转效果 */
+/* 图片 - 处理旋转效果（通用） */
 .image-container img {
   width: 100%;
   height: auto;
@@ -637,42 +581,25 @@ a:hover {
   transform-style: preserve-3d;
 }
 
-/* 响应式调整 */
-@media (max-width: 768px) {
-  .image-container {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .image-container a {
-    width: 48%;
-  }
-}
-
-/* 避免与其他图片样式冲突 */
+/* 避免与其他图片样式冲突（通用） */
 .blog-content .image-container img:hover {
   box-shadow: none;
   transform: none;
 }
 
 
-
-
-
-
-
-/* 博客推荐区域 - 极简风格 */
+/* 博客推荐区域 - PC端（极简风格） */
 .blog-recommend-section {
-  margin: 3rem 0;
-  padding: 2rem 0;
+  margin: 3rem 0; /* PC端上下间距 */
+  padding: 2rem 0; /* PC端内边距 */
   background: #f9f9f9;
-  border-radius: 15px;
+  border-radius: 15px; /* PC端圆角 */
   box-shadow: var(--shadow-light) inset;
 }
 
 .recommend-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem; /* PC端标题大小 */
+  margin-bottom: 1.5rem; /* PC端标题下方间距 */
   color: var(--text-color);
   text-align: center;
 }
@@ -680,25 +607,25 @@ a:hover {
 .recommend-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.5rem; /* PC端卡片间距 */
   justify-content: center;
 }
 
 .recommend-card {
-  width: 320px;
+  width: 320px; /* PC端卡片宽度 */
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 12px; /* PC端卡片圆角 */
   box-shadow: var(--shadow-light);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   border: 1px solid var(--border-color);
   cursor: pointer;
-  padding: 1.8rem;
+  padding: 1.8rem; /* PC端卡片内边距 */
   overflow: hidden;
 }
 
 .recommend-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* PC端卡片hover上浮效果 */
   box-shadow: var(--shadow-hover);
   border-color: rgba(0,0,0,0.1);
 }
@@ -727,30 +654,152 @@ a:hover {
 }
 
 .recommend-card-title {
-  font-size: 1.3rem;
+  font-size: 1.3rem; /* PC端卡片标题大小 */
   font-weight: bold;
   color: var(--text-color);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem; /* PC端标题下方间距 */
   line-height: 1.4;
   transition: color 0.3s ease;
 }
 
 .recommend-card-excerpt {
-  font-size: 0.95rem;
+  font-size: 0.95rem; /* PC端卡片摘要大小 */
   color: var(--text-light);
   line-height: 1.6;
   transition: color 0.3s ease;
 }
 
-/* 响应式调整 */
+
+/* 响应式设计 - 手机端（屏幕宽度≤768px） */
 @media (max-width: 768px) {
+  /* 基础变量调整 */
+  :root {
+    --hover-scale: 1.01; /* 手机端hover放大比例减小，避免过度效果 */
+  }
+
+  body {
+    padding-bottom: 80px; /* 手机端为页脚留出更多空间 */
+  }
+
+  /* 导航栏 - 手机端（垂直布局） */
+  .navbar {
+    flex-direction: column; /* 垂直排列 */
+    padding: 1rem; /* 手机端更小内边距 */
+  }
+  
+  .nav-links {
+    margin-top: 1rem; /* 导航链接与logo间距 */
+    gap: 1rem; /* 手机端链接间距减小 */
+    font-size: 0.9rem; /* 手机端字体缩小 */
+  }
+
+  /* 主体内容 - 手机端 */
+  .content {
+    max-width: 100%; /* 手机端宽度占满屏幕 */
+    margin-top: 8rem; /* 手机端顶部间距增大（避免被导航栏遮挡） */
+    padding: 0 1rem; /* 手机端内边距减小 */
+    border-radius: 10px; /* 手机端圆角减小 */
+  }
+  
+  .main-content {
+    padding: 1.5rem; /* 手机端内边距减小 */
+  }
+
+  /* 博客内容 - 手机端 */
+  .blog-content {
+    border-radius: 10px; /* 手机端圆角减小 */
+    padding: 1.5rem; /* 手机端内边距调整 */
+  }
+  
+  .blog-content::before {
+    border-radius: 10px 0 0 10px; /* 匹配手机端圆角 */
+  }
+
+  .blog-content h2 {
+    font-size: 1.5rem; /* 手机端标题缩小 */
+  }
+
+  /* 页脚 - 手机端（垂直布局） */
+  .footer {
+    flex-direction: column; /* 垂直排列 */
+    gap: 1rem; /* 元素间距 */
+    text-align: center; /* 文字居中 */
+    padding: 1rem; /* 手机端内边距调整 */
+  }
+
+  /* 文章卡片 - 手机端 */
+  .post-card {
+    padding: 1rem; /* 手机端内边距减小 */
+  }
+
+  /* 图片容器 - 手机端 */
+  .image-container {
+    flex-wrap: wrap; /* 换行显示 */
+    gap: 1rem; /* 手机端间距调整 */
+  }
+  
+  .image-container a {
+    width: 48%; /* 手机端每张图片宽度（每行2张） */
+  }
+
+  /* 分类标签 - 手机端 */
+  .tag-cloud {
+    gap: 0.5rem; /* 手机端标签间距减小 */
+  }
+
+  .tag {
+    padding: 0.4rem 0.8rem; /* 手机端标签内边距减小 */
+    font-size: 0.85rem; /* 手机端标签字体缩小 */
+  }
+
+  /* 搜索框 - 手机端 */
+  .search-box {
+    gap: 0.5rem; /* 手机端搜索框与按钮间距减小 */
+  }
+
+  #search-input {
+    padding: 0.6rem; /* 手机端输入框内边距减小 */
+  }
+
+  #search-btn {
+    padding: 0 1rem; /* 手机端按钮大小减小 */
+  }
+
+  /* 博客推荐区域 - 手机端 */
   .recommend-cards {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* 垂直排列 */
+    align-items: center; /* 居中对齐 */
   }
   
   .recommend-card {
-    width: 100%;
-    max-width: 400px;
+    width: 100%; /* 手机端卡片宽度占满容器 */
+    max-width: 400px; /* 最大宽度限制 */
+    padding: 1.2rem; /* 手机端卡片内边距减小 */
+  }
+
+  .recommend-title {
+    font-size: 1.3rem; /* 手机端标题缩小 */
+    margin-bottom: 1rem; /* 间距减小 */
+  }
+
+  .recommend-card-title {
+    font-size: 1.1rem; /* 手机端卡片标题缩小 */
+  }
+
+  .recommend-card-excerpt {
+    font-size: 0.9rem; /* 手机端摘要字体缩小 */
+  }
+
+  /* 社交图标 - 手机端 */
+  .social-links {
+    gap: 1rem; /* 手机端图标间距减小 */
+  }
+
+  .social-icon img {
+    height: 22px; /* 手机端图标缩小 */
+  }
+
+  .random-text {
+    font-size: 0.9rem; /* 手机端随机文本缩小 */
   }
 }

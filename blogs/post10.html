@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="/js/loadPartials.js"></script>
+    <title>一个直播歌曲显示小工具</title>
+    <meta name="date" content="2025-07-11 9:18:17">
+    <meta name="tags" content="歌曲组件,直播工具">
+    <meta name="excerpt" content="直播间显示当前曲目用的工具">
+</head>
+<body>
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder">一个直播歌曲显示小工具</header>
+    <main class="content blog-content">
+        <h1 class="page-title blog-title"></h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2025-07-11 9:18:17</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">歌曲组件,直播工具</span></span>
+        </div>
+        <div class="blog-body">
+            <p>"直播间显示当前曲目用的工具"</p><br>
+<p>
+最近在清理自己D盘的时候发现自己以前在B站看了某个视频下载了这个工具<br>
+现在用上了感觉挺美观好用的哈哈哈<br>
+所以就来推荐一下吧<br>
+<h2>NowPlaying直播歌曲组件</h2>
+支持市面上大部分音乐软件<br>
+支持部分点歌机以及播放器<br>
+有多种自定义样式可以选择<br>
+支持歌曲信息输出<br>
+可以显示歌词<br>
+上手非常简单<br>
+更多其余功能详情可见以下链接<br>
+<a href="https://gitee.com/widdit/now-playing"><strong><u>NowPlaying Gitee页面</u></strong></a> 
+<a href="https://github.com/Widdit/now-playing-service"><strong><u>NowPlaying Github页面</u></strong></a> 
+</p>
+
+
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+        // 动态更新博客元信息
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.title;
+            const metaDate = document.querySelector('meta[name="date"]').content;
+            const metaTags = document.querySelector('meta[name="tags"]').content;
+            
+            // 更新标题
+            document.querySelector('.blog-title').textContent = title;
+            
+            // 更新日期
+            if(metaDate && metaDate !== '请填写日期') {
+                document.getElementById('blog-date').textContent = metaDate;
+            }
+            
+            // 更新标签
+            if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+                const tags = metaTags.split(',').map(tag => tag.trim());
+                document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                    `<span class="tag">${tag}</span>`
+                ).join(' ');
+            }
+        });
+    </script>
+</body>
+</html>

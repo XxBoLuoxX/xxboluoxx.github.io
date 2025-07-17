@@ -1,0 +1,60 @@
+%!Adobe-FontList 1.24
+%Locale:0x804
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:CEF-Fonts-CJK
+FamilyName:CEF Fonts CJK
+StyleName:Regular
+FullName:CEF Fonts CJK
+MenuName:CEF Fonts CJK
+StyleBits:0
+FamilyNameNative:CEF Fonts CJK
+StyleNameNative:Regular
+FullNameNative:CEF Fonts CJK Regular
+WritingScript:Japanese
+OutlineFileName:E:\XxBoLuoxX.github.io\xxboluoxx.github.io\Font\CEFFontsCJK-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:22847936
+FileModTime:1686611664
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:2,Win,1,快去寫作業-CJK 常規
+NameArray:0,Win,1,CEF Fonts CJK
+NameArray:25,Win,1,快去写作业-CJK 常规
+NameArray:2,Win,1,快去寫作業-CJK 常規
+NameArray:0,Win,1,_隨籟隣\im-CJK ^8墢
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:-Bold
+FamilyName:-Bold
+StyleName:Bold
+FullName:-Bold
+MenuName:荆南波波黑
+StyleBits:2
+FamilyNameNative:荆南波波黑
+StyleNameNative:Bold
+FullNameNative:荆南波波黑 Bold
+WritingScript:SimplifiedChinese
+OutlineFileName:E:\XxBoLuoxX.github.io\xxboluoxx.github.io\Font\jingnanbold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:5173752
+FileModTime:1720927476
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,僃SWl鈒鉃?
+NameArray:25,Win,1,荆南波波黑
+%EndFont
+

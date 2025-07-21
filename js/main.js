@@ -1,16 +1,3 @@
-// 高亮当前导航菜单
-function highlightCurrentNav() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    const linkPath = link.getAttribute('href').split('/').pop();
-    if (currentPath === linkPath) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-}
-
 // 从外部文件加载随机文本
 async function loadRandomText() {
     try {
@@ -27,8 +14,25 @@ async function loadRandomText() {
     }
 }
 
-// 初始化页面
-document.addEventListener('DOMContentLoaded', async () => {
-  highlightCurrentNav();
-  await loadRandomText();
+// 切换深色模式
+function toggleDarkMode() {
+    const body = document.body;
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        toggleButton.textContent = '浅色模式';
+    } else {
+        toggleButton.textContent = '深色模式';
+    }
+}
+
+// 添加点击事件监听器
+const toggleButton = document.getElementById('dark-mode-toggle');
+if (toggleButton) {
+    toggleButton.addEventListener('click', toggleDarkMode);
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', () => {
+    loadRandomText();
 });

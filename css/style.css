@@ -337,7 +337,7 @@ body {
 
 .tag {
   padding: 0.5rem 1rem;
-  background: var(--primary);
+  background: #666; /* 修改为深灰色 */
   color: #fff;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -350,7 +350,7 @@ body {
 }
 
 .tag:hover {
-  background: var(--primary-dark);
+  background: #444; /* 鼠标悬停时颜色加深 */
   transform: translateY(-2px); /* PC端hover效果 */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -736,13 +736,18 @@ a:hover {
 
   /* 分类标签 - 手机端 */
   .tag-cloud {
-	flex-wrap: wrap; /* 允许标签换行 */
+    flex-wrap: wrap; /* 允许标签换行 */
     gap: 0.5rem; /* 手机端标签间距减小 */
   }
 
   .tag {
     padding: 0.4rem 0.8rem; /* 手机端标签内边距减小 */
     font-size: 0.85rem; /* 手机端标签字体缩小 */
+    background: #666; /* 修改为深灰色 */
+  }
+
+  .tag:hover {
+    background: #444; /* 鼠标悬停时颜色加深 */
   }
 
   /* 搜索框 - 手机端 */

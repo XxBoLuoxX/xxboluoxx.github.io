@@ -7,13 +7,6 @@ async function initBlog() {
         showLoading(true);
         await loadBlogPosts();
         renderBlogContent();
-
-        // 检查URL参数中的标签
-        const urlParams = new URLSearchParams(window.location.search);
-        const tag = urlParams.get('tag');
-        if (tag) {
-            filterPostsByTag(tag);
-        }
     } catch (error) {
         console.error('初始化博客失败:', error);
         showError('加载博客内容失败，请稍后再试');
@@ -166,9 +159,11 @@ function renderPosts(posts, containerId) {
             }
         });
         
-        // 生成标签云链接
-        const tagLinks = post.tags.map(tag => `<a href="/html/categories.html?tag=${encodeURIComponent(tag)}" class="tag transition-all duration-300 hover:bg-primary-dark hover:scale-105">${tag}</a>`).join(', ');
-
+        // 修改标签渲染逻辑 - 移除逗号，使用标签样式
+        const tagsHtml = post.tags.length > 0 
+            ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')
+            : '无标签';
+        
         postCard.innerHTML = `
             <h2 class="text-xl font-bold mb-2 transition-colors duration-300 hover:text-primary">
                 ${post.title}
@@ -176,7 +171,7 @@ function renderPosts(posts, containerId) {
             <p class="text-gray-600 mb-4">${post.excerpt}</p>
             <div class="post-meta">
                 <span><i class="fas fa-calendar-alt mr-1"></i> ${post.date}</span>
-                <span><i class="fas fa-tags mr-1"></i> ${tagLinks}</span>
+                <span><i class="fas fa-tags mr-1"></i> ${tagsHtml}</span>
             </div>
         `;
         
@@ -207,13 +202,14 @@ function renderCategories() {
 
     sortedTags.forEach(({ tag, count }) => {
         const tagElement = document.createElement('a');
-        tagElement.href = `/html/categories.html?tag=${encodeURIComponent(tag)}`;
+        tagElement.href = `javascript:void(0)`;
         tagElement.className = 'tag transition-all duration-300 hover:bg-primary-dark hover:scale-105';
         tagElement.textContent = `${tag} (${count})`;
-        tagCloud.appendChild(tagElement);
+        tagElement.addEventListener('click', () => filterPostsByTag(tag));
+        tagCloud.appendChild(tagElement); // 修改：添加到tagCloud而不是container
     });
-
-    container.appendChild(tagCloud);
+    
+    container.appendChild(tagCloud); // 修改：将tagCloud添加到container
 }
 
 // 根据标签过滤文章

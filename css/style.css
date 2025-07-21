@@ -335,19 +335,36 @@ body {
 }
 
 
+/* 标签样式 - 固定大小 */
 .tag {
-  padding: 0.5rem 1rem;
+  /* 固定宽度和高度 */
+  width: 100px; /* 根据需求调整固定宽度 */
+  height: 36px; /* 根据需求调整固定高度 */
+  
+  /* 固定内边距（配合宽高确保内容居中） */
+  padding: 0; /* 取消默认内边距，避免影响固定尺寸 */
+  
+  /* 固定字体大小 */
+  font-size: 0.9rem; /* 无论设备如何，字体大小固定 */
+  
+  /* 确保文字在固定尺寸内居中显示 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  /* 其他原有样式保留 */
   background: var(--primary);
   color: #fff;
   border-radius: 20px;
-  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  white-space: nowrap; /* 禁止标签内文本换行 */
-  flex-shrink: 0; /* 防止标签被压缩 */
+  white-space: nowrap; /* 禁止文本换行 */
+  flex-shrink: 0; /* 防止被父容器压缩 */
 }
+
 
 .tag:hover {
   background: var(--primary-dark);
@@ -736,13 +753,15 @@ a:hover {
 
   /* 分类标签 - 手机端 */
   .tag-cloud {
-	flex-wrap: wrap; /* 允许标签换行 */
+    flex-wrap: wrap; /* 允许标签换行 */
     gap: 0.5rem; /* 手机端标签间距减小 */
   }
 
+  /* 标签样式 - 手机端固定大小 */
   .tag {
-    padding: 0.4rem 0.8rem; /* 手机端标签内边距减小 */
-    font-size: 0.85rem; /* 手机端标签字体缩小 */
+    width: 80px; /* 手机端固定宽度 */
+    height: 32px; /* 手机端固定高度 */
+    font-size: 0.8rem; /* 手机端固定字体大小 */
   }
 
   /* 搜索框 - 手机端 */

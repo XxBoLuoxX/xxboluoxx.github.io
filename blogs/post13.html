@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="/js/loadPartials.js"></script>
+    <title>郊狼到底是不是硬盘盒</title>
+    <meta name="date" content="2025/7/29 4:54:11">
+    <meta name="tags" content="生活,吐槽">
+    <meta name="excerpt" content="我竟然有一天会思考这个问题">
+</head>
+<body>
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder">郊狼到底是不是硬盘盒</header>
+    <main class="content blog-content">
+        <h1 class="page-title blog-title"></h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2025/7/29 4:54:11</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">生活,吐槽</span></span>
+        </div>
+        <div class="blog-body">
+            <p>我竟然有一天会思考这个问题</p><br>
+<p>
+<br>"郊狼"一词在本文内提到的均代指为"郊狼电击器"
+<br>这是一个"情趣用品"，并不是什么"硬盘盒"
+<br>而这篇文章就是我好奇它到底是不是硬盘盒的原因
+</p>
+<p>
+<h1>正文</h1>
+<br>"郊狼"这个东西早在几年前就略微听过这个东西
+<br>也知道他是个情趣电击器
+<br>但是好巧不巧，今天给我推的一个视频
+<br>称呼郊狼为硬盘盒
+<br>我抱着看个乐的心态点开了这个视频
+<br>看完后，我的大脑宕机了
+<br>我竟然开始在认真思考郊狼是不是硬盘盒
+<br>或者说，是否具有存储数据的功能
+<br>我便开打开搜索引擎开始搜："郊狼是什么"
+<br>首先第一个就是AI总结
+<br>告诉我是个动物
+<br>这显然不是我要找的内容
+<br>第二个是一个Blog
+<br>说的是一个郊狼3.0的开箱简单评价
+<br>我便点开查找了起来
+<br>除了更加确信这是个情趣电击器以外
+<br>我也愈发的好奇它到底有没有存储功能
+<br>毕竟那么大个小盒子，我真的在思考是不是硬盘盒
+<br>再从搜索引擎上换了几个方式后也搜不到啥东西
+<br>于是我就转向去找腾讯元宝了
+<br>在AI的帮助下
+<br>最终告诉了我郊狼不是硬盘盒
+<br>有些人就纳闷了，我看个拆解的视频不久知道了么
+<br>我去，有道理
+<br>我人还是太笨了唉唉
+<p/>
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+    // 动态更新博客元信息
+    document.addEventListener('DOMContentLoaded', function() {
+        const title = document.title;
+        const metaDate = document.querySelector('meta[name="date"]').content;
+        const metaTags = document.querySelector('meta[name="tags"]').content;
+        
+        // 更新标题
+        document.querySelector('.blog-title').textContent = title;
+        
+        // 更新日期
+        if(metaDate && metaDate !== '请填写日期') {
+            document.getElementById('blog-date').textContent = metaDate;
+        }
+        
+        // 更新标签
+        if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+            const tags = metaTags.split(',').map(tag => tag.trim());
+            document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                `<a href="/html/categories.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`
+            ).join(' ');
+        }
+    });
+</script>
+</body>
+</html>

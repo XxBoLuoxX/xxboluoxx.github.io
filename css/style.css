@@ -795,4 +795,16 @@ a:hover {
   .random-text {
     font-size: 0.9rem; /* 手机端随机文本缩小 */
   }
+/* 博客元信息样式补充 */
+.blog-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0 2rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.blog-views {
+    padding: 0.2rem 0;
+}
 }

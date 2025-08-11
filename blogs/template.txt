@@ -3,6 +3,7 @@
 <head>
     <script src="/js/loadPartials.js"></script>
     <title>新博客标题</title>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <meta name="date" content="请填写日期">
     <meta name="tags" content="请填写标签，用逗号分隔">
     <meta name="excerpt" content="请填写文章摘要">
@@ -15,6 +16,8 @@
         <div class="blog-meta">
             <span class="blog-date">日期：<span id="blog-date">请填写日期</span></span>
             <span class="blog-tags">标签：<span id="blog-tags">请填写标签</span></span>
+<br><small>
+<span class="blog-views">浏览量：<span id="busuanzi_value_page_pv"></span> 次</span></small>
         </div>
         <div class="blog-body">
             <p>请填写文章正文内容...</p><br>

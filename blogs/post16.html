@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="/js/loadPartials.js"></script>
+    <title>梦醒 现在是幻想时间#1</title>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="date" content="2025/8/16 3:52">
+    <meta name="tags" content="生活,吐槽">
+    <meta name="excerpt" content="其实我每年都会有几天梦见你">
+</head>
+<body>
+    <!-- 导航栏和头部 -->
+    <header id="header-placeholder">梦醒 现在是幻想时间#1</header>
+    <main class="content blog-content">
+        <h1 class="page-title blog-title"></h1>
+        <div class="blog-meta">
+            <span class="blog-date">日期：<span id="blog-date">2025/8/16 3:52</span></span>
+            <span class="blog-tags">标签：<span id="blog-tags">生活,吐槽</span></span>
+<br><small>
+<span class="blog-views">浏览量：<span id="busuanzi_value_page_pv"></span> 次</span></small>
+        </div>
+        <div class="blog-body">
+            <p>既然又梦到你了，那就让我把此时此刻想说的说给你听吧</p><br>
+<p>
+<br>其实我每年都会有几天梦见你
+<br>
+<br>既然又梦到你了，那就让我把此时此刻想说的说给你听吧
+<br>
+<br>我印象的感觉里你是个又可爱又飒的妹子
+<br>长相啥的我也不在意
+<br>
+<br>我喜欢你
+<br>我对你没有什么非分之想
+<br>我还是会克制自己的
+<br>知道人与人基本的相处
+<br>不然那样显得我除了黄或者变态就没别的了
+<br>我喜欢和你待在一起
+<br>我喜欢和你聊天
+<br>喜欢你说我
+<br>喜欢你在我哭的时候会来安慰我
+<br>你是一个很特别的人
+<br>特别到我自己想去了解你所触及的圈子
+<br>试图给我们多找点共同话
+<br>虽然现实里我们已经闹掰了
+<br>那年毕业以后
+<br>我和你就彻底断了联系
+<br>你把我全平台拉黑了
+<br>几年过后
+<br>我也开过小号去找你道歉
+<br>你说请我忘记你
+<br>但是每一次做梦梦到你
+<br>我还是会想你
+<br>想念那时候我们在一起做同桌的日子
+<br>下课打闹的日子
+<br>回家后在线上聊天的日子
+<br>
+<br>这段回忆对你或者对我来说都是黑历史
+<br>我不知道你是否也会做这个梦
+<br>你会对我怎么想
+<br>但是我还是想跟你由衷的说一句
+<br>对不起
+<br>仅此而已
+<br>给大家送一首自己瞎写的歌吧
+<br>
+<br>
+<br>
+</p>
+            <!-- 文章内容 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer id="footer-placeholder"></footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <script>
+    // 动态更新博客元信息
+    document.addEventListener('DOMContentLoaded', function() {
+        const title = document.title;
+        const metaDate = document.querySelector('meta[name="date"]').content;
+        const metaTags = document.querySelector('meta[name="tags"]').content;
+        
+        // 更新标题
+        document.querySelector('.blog-title').textContent = title;
+        
+        // 更新日期
+        if(metaDate && metaDate !== '请填写日期') {
+            document.getElementById('blog-date').textContent = metaDate;
+        }
+        
+        // 更新标签
+        if(metaTags && metaTags !== '请填写标签，用逗号分隔') {
+            const tags = metaTags.split(',').map(tag => tag.trim());
+            document.getElementById('blog-tags').innerHTML = tags.map(tag => 
+                `<a href="/html/categories.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`
+            ).join(' ');
+        }
+    });
+</script>
+</body>
+</html>
